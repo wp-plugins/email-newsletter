@@ -117,7 +117,6 @@ function eemail_import()
 	
 }
 
-
 function SetAllCheckBoxes(FormName, FieldName, CheckValue)
 {
 	
@@ -133,4 +132,15 @@ function SetAllCheckBoxes(FormName, FieldName, CheckValue)
 		// set the check value for all check boxes
 		for(var i = 0; i < countCheckBoxes; i++)
 			objCheckBoxes[i].checked = CheckValue;
+}
+
+
+function exportcsv(url, option)
+{
+	if(confirm("Do you want to export the emails?"))
+	{
+		//document.frm_emailnewsletter.action="admin.php?page=add_admin_menu_export_csv&option="+option;
+		document.frm_emailnewsletter.action= url+"?option="+option;
+		document.frm_emailnewsletter.submit();
+	}
 }

@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in. also we have email subscriber option.
 Author: Gopi.R
-Version: 12.0
+Version: 13.0
 Author http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -369,8 +369,8 @@ function add_admin_menu_email_to_simple_contact_form() {
 
 // Start v 7.0
 function add_admin_menu_export_csv() {
-	//global $wpdb;
-	//include_once("export-csv.php");
+	global $wpdb;
+	include_once("export-csv.php");
 }
 // End v 7.0
 
@@ -399,7 +399,7 @@ function add_admin_menu_option()
 	add_submenu_page('email-newsletter', 'View subscribed user', 'View subscribed user', 'administrator', 'add_admin_menu_view_subscriber', 'add_admin_menu_view_subscriber');
 	add_submenu_page('email-newsletter', 'Subscriber form setting', 'Setting', 'administrator', 'add_admin_menu_widget_option', 'add_admin_menu_widget_option');
 	// Start v 7.0
-	//add_submenu_page('email-newsletter', 'Export CSV', 'Export CSV', 'administrator', 'add_admin_menu_export_csv', 'add_admin_menu_export_csv');
+	add_submenu_page('email-newsletter', 'Export CSV', 'Export CSV', 'administrator', 'add_admin_menu_export_csv', 'add_admin_menu_export_csv');
 	// End v 7.0
 	// Start v 8.0
 	add_submenu_page('email-newsletter', 'Import emails', 'Import emails', 'administrator', 'add_admin_menu_import_emails', 'add_admin_menu_import_emails');

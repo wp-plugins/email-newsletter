@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: email, newsletter, sendmail, contact, e-mail
 Requires at least: 2.8
-Tested up to: 3.4.2
-Stable tag: 12.0
+Tested up to: 3.5
+Stable tag: 13.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -46,20 +46,6 @@ This plug-in broadly consider seven option
 5. Send mail to subscribed user.
 6. Send mail to simple contact form emails.
 7. Export emails into CSV file
-
-**Version 1.0**		
-First version.
-
-**Version 2.0**		
-non admin users cant access this plugin.
-
-**Version 3.0**		
-Check all, Uncheck all option.
-
-**Version 4.0**		
-Email subscribe box for front end.		
-Separate page to send emails to subscribed user.		
-Integrated the email newsletter plugin with simple contact form plugin, Here after we can send email to contacts list.
 
 [Click here](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	 to see detail information about this plugin.	
 
@@ -145,6 +131,21 @@ Export the email address option removed, this option removed because of the secu
 
 New demo link, www.gopiplus.com
 
+= 11.0 =
+
+Implemented most awaited newsletter unsubscribe option.
+Option available to add the unsubscribe link within the newsletter.
+
+= 12.0 =
+
+1. Option to delete multiple emails address in the view subscribed users menu
+2. Option to send mail to limited users(Letter search option available in the send mail page, we can select the particular letters to send the mails).
+
+= 13.0 =
+
+New export email address option added (Fixed all security issue)
+Tested up to 3.5
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -207,3 +208,8 @@ Option available to add the unsubscribe link within the newsletter.
 
 1. Option to delete multiple emails address in the view subscribed users menu
 2. Option to send mail to limited users(Letter search option available in the send mail page, we can select the particular letters to send the mails).
+
+= 13.0 =
+
+New export email address option added (Fixed all security issue)
+Tested up to 3.5

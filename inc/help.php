@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="emailn-widgetsleft">
-      <h3>This plug-in broadly consider five option</h3>
+      <h3>Plugin option</h3>
       <div class="emailn-widgetsleft-desc"> <strong>Compose email</strong>
         <p>This is the first step for this plug-in, before sending mail to user, first we have to compose the mail using this page, once you created the mail content from this page, the created mail subject will be display automatically in the send mail page. <a target="_blank" href='http://www.gopiplus.com/work/2010/09/25/email-newsletter/'>Click here</a> to read more help.</p>
         <strong>Send mail to registered user</strong>
