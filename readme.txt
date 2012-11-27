@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: email, newsletter, sendmail, contact, e-mail
 Requires at least: 2.8
 Tested up to: 3.5
-Stable tag: 13.0
+Stable tag: 13.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -146,6 +146,10 @@ Option available to add the unsubscribe link within the newsletter.
 New export email address option added (Fixed all security issue)
 Tested up to 3.5
 
+= 13.1 =
+
+Small typo error fixed on the search alphabet. Now we can search the emails starting with M, N, O
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -213,3 +217,7 @@ Option available to add the unsubscribe link within the newsletter.
 
 New export email address option added (Fixed all security issue)
 Tested up to 3.5
+
+= 13.1 =
+
+Small typo error fixed on the search alphabet. Now we can search the emails starting with M, N, O

@@ -64,7 +64,7 @@ foreach ( $data as $data )
 echo "</tr></table>";
 }
 ?>
-    <?php
+<?php
 $data = $wpdb->get_results("select eemail_id,eemail_subject  from ".WP_eemail_TABLE." order by eemail_id desc");
 if ( !empty($data) ) 
 {
