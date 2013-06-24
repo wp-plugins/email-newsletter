@@ -4,7 +4,7 @@
 .emailn-widgetsleft{width: 100%; margin: 0 auto 15px auto; border: 1px solid #DFDFDF; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
 .emailn-widgets{width: 285px; margin: 0 auto 15px auto; border: 1px solid #DFDFDF; border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px;}
 .emailn-widgets h3{
-		font-size: 14px;
+		font-size: 12px;
 		font-weight: 700;
 		padding: 8px 10px;
 		margin:0;
@@ -17,7 +17,7 @@
 		border-bottom: 1px solid #dfdfdf;
 }
 .emailn-widgetsleft h3{
-		font-size: 14px;
+		font-size: 12px;
 		font-weight: 700;
 		padding: 8px 10px;
 		margin:0;
@@ -41,17 +41,25 @@
 .emailn-widgets-desc ul{font-size: 13px; list-style: disc outside; margin-left: 12px}
 .emailn-widgets-desc ol{font-size: 13px; list-style: decimal outside}
 .emailn-content {
-	font-family: 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	color: #000000;
 	text-decoration: underline;
 	background-color:#FFFFFF;
 }
 .emailn-subcontent {
-	font-family: 'Segoe UI', Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight:bold;
 	color: #990000;
 	text-decoration: none;
 	background-color:#FFFFFF;
+}
+A.helplink:link, A.helplink:active, A.helplink:visited {
+font-size: 12px;
+font-weight:normal;
+text-decoration: none;
+}
+A.helplink:hover {
+font-size: 12px;
+font-weight:normal;
+text-decoration:none;
 }

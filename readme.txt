@@ -3,14 +3,14 @@ Contributors: www.gopiplus.com, gopiplus
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-Tags: email, newsletter, sendmail, contact, e-mail
-Requires at least: 2.8
-Tested up to: 3.5
-Stable tag: 13.1
+Tags: Email, Newsletter, SendMail, Contact
+Requires at least: 3.0
+Tested up to: 3.6
+Stable tag: 14.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
-Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in. 
+Sometimes you need a easy way to send mails. Who Registered, Commented, Subscribed to your blogs. now it's as easy as installing this plug-in.
 
 == Description ==
 
@@ -19,64 +19,108 @@ Check official website for live demo [http://www.gopiplus.com/work/2010/09/25/em
 *   [Live Demo](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
 *   [More info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)				
 *   [Comments/Suggestion](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)		
-*   [About author](http://www.gopiplus.com/work/)			
+*   [About author](http://www.gopiplus.com/work/)	
 
-Email newsletter wordpress plugin have option to send HTML mail to registered user also we can send mail to comment posted user. Sending email is much cheaper than most other forms of communication. Email marketing has proven very successful for those who do it right. There is no configuration in this plugin. After activated the plugin you can start send mail to your users.
+Email newsletter plugin have option to send HTML Mails/Newsletters to registered user, Comment author, Subscriber and Users who contacted you. Sending email is much cheaper than most other forms of communication. Email marketing has proven very successful for those who do it right. This plugin is very useful those who need to send Newsletters to users who subscribed to your blogs.
 
-Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in.
+Advantage of this plugin
 
-Send your website update to all your registered/comment posted user using this email newsletter plug-in.
-	
-Send your website update to all your registered/comment posted user using this email newsletter plugin.
+*   No coding knowledge required to setup this plugin.
+*   Very easy installation and setup.
+*   Option to send email newsletter to registered user.
+*   Option to send email newsletter to commenter (Comment author).
+*   Option to send email newsletter to users who contacted you.
+*   Option to setup email subscription box and option to send email newsletter to subscriber.
+*   Option to setup unsubscribe link in newsletter.
+*   Option to Export and Import email address.
+*   Automatic welcome email to new subscriber.
+*   Admin email notification for every new subscriber.
 
-    * Simple.
-    * Easy installation.
-    * Using this plug-in we can send email to all registered folks.
-    * Using this plug-in we can send email to all comment posted folks.
-    * Check box option available to select/unselect email from the list.
-	* Email subscribe box for front end(available from version 4.0).
-	* Integrated the email newsletter plugin & simple contact form plugin
+= Compose Mail =
 
-This plug-in broadly consider seven option
+This is the first step to take with this plugin. Before sending mail to a user, you first need to compose the mail message, using this page. Once you have composed your mail, it will display automatically on the send mail page. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
-1. Plug-in Home	
-2. Compose email.	
-3. Send mail to registered user.
-4. Send mail to comment posted user.	
-5. Send mail to subscribed user.
-6. Send mail to simple contact form emails.
-7. Export emails into CSV file
+= Send Mail to a Registered User =
 
-[Click here](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	 to see detail information about this plugin.	
+Use this page for sending mails to registered users. On this page you find the email addresses of all registered users listed with a check box option. If you don’t want to mail any particular user(s), you can uncheck the email(s) on this list. After you selected the users, click on the email subject you first created and press the Send Mail button.  [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
-Tags: email, newsletter, sendmail, contact, e-mail
-	
+= Send Mail to Commenters =
+
+Use this page for sending mails to commenters. On this page you find the email addresses of all commenters listed with a check box option. If you don’t want to mail any particular commenter(s), you can uncheck the email(s) on this list. After you selected the commenters, click on the email subject you first created and press the Send Mail button. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
+= Send Mail to Subscribed Users =
+
+This plugin offers a new option. It’s a widget that you can drag to your sidebar. It serves as a subscribe option for your site visitors. Use this page to send mails to visitors who subscribed to your newsletter through the widget. You find them all listed with a check box option. If you don’t want to mail any particular subscriber(s), you can uncheck the email(s) on this list. After you selected the subscribers, click on the email subject you first created and press the Send Mail button. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
+You can see all subscribers on the ‘View Subscriber’ page.
+
+= Send Mail to Users who Contacted You =
+
+This plugin now comes with a ‘Simple Contact Form’. I thought it would be useful to combine this feature with the newsletter plugin. After installing the contact form, your site visitors may contact you using this form. Those users then are visible to you on this page, and you can email them by using the same procedure as outlined before click here. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
+Install the plugin ‘Simple Contact Form’ on your site. If it is not useful to you, omit this menu.
+
+= Export Users to CSV =
+
+This is a new option that allows you to download all users into a formatted text file (CSV) for later import on another site of yours, or for using particular emails of it in your ordinary mail client, or for migrating your WordPress site to another server. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
+= Import Mails =
+
+This new option allows you to import mail addresses into your subscription list. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
+= Setup Unsubscribe Link =
+
+This option is important for your mail receivers being able to unsubscribe from your newsletter. There will be a link in each newsletter that mail receivers can click for unsubscribing from your mailing list. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
+= Plugin configuration =
+
+1. Drag and drop the widget.
+
+2. Add the plugin in the posts or pages using short code.
+
+3. Add directly in to the theme using PHP code.
+
+[Plugin Configuration](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+
 == Installation ==
 
 **Installation Instruction & Configuration**  
 
-[See Installation Instruction and Configuration information and Demo](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	   
+[Installation Instruction and Configuration](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	   
 
 == Frequently Asked Questions ==
 
-**1. How/Where to compose email?**		
-**2. How to send email?**		
-**3. How to send email to registered user?**		
-**4. How to send email to comment posted user?**		
-**5. How/Where to uncheck the particular user email from the list?**		
-**5. Can i send the newsletter?**		
-**6. How to design the newsletter?** 			
+1. How to compose email?
 
-[Answer page](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)			
-[Contact](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
+2. How to send email to registered user?
+
+3. How to send email to commenter's (I.e. Who posted comments to your blog)?
+
+4. How to send email to newsletter subscriber?
+
+5. How to Export & Import email address?
+
+6. How to design a Newsletter?		
+
+[Answer](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
 
 == Screenshots ==
 
-1. Compose email. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+1. Admin Menu. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 
-2. Send email. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+2. Compose Mail. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 
-3. Front End. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+3. Compose Mail. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+
+4. Send Mail to Subscribed Users. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+
+5. Send Mail to a Registered User. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+
+6. Send Mail to Commenters. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+
+7. Export Users to CSV. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+
+8. Import Mails. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 
 == Changelog ==
 
@@ -150,6 +194,16 @@ Tested up to 3.5
 
 Small typo error fixed on the search alphabet. Now we can search the emails starting with M, N, O
 
+= 14.0 =
+
+1. Tested up to wordpress 3.6.
+2. New admin layout.
+3. Automatic welcome email to new subscriber. 
+4. Admin email notification for every new subscriber.
+5. Added security thingy that wordpress offers us.
+6. New Short Code option to load the Subscription Box in posts and pages.
+7. Improved documentation.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -221,3 +275,13 @@ Tested up to 3.5
 = 13.1 =
 
 Small typo error fixed on the search alphabet. Now we can search the emails starting with M, N, O
+
+= 14.0 =
+
+1. Tested up to wordpress 3.6.
+2. New admin layout.
+3. Automatic welcome email to new subscriber. 
+4. Admin email notification for every new subscriber.
+5. Added security thingy that wordpress offers us.
+6. New Short Code option to load the Subscription Box in posts and pages.
+7. Improved documentation.

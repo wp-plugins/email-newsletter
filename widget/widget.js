@@ -2,20 +2,36 @@
 
 function eemail_submit_ajax(url)
 {
-	txt_email_newsletter=document.getElementById("eemail_txt_email");
+	txt_email_newsletter = document.getElementById("eemail_txt_email");
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if(txt_email_newsletter.value=="")
     {
-        alert("Please enter the email address");
+        alert("Please enter email address.");
         txt_email_newsletter.focus();
         return false;    
     }
 	if(txt_email_newsletter.value!="" && (txt_email_newsletter.value.indexOf("@",0)==-1 || txt_email_newsletter.value.indexOf(".",0)==-1))
     {
-        alert("Please enter valid email")
+        alert("Please provide a valid email address.")
         txt_email_newsletter.focus();
         txt_email_newsletter.select();
         return false;
     }
+	if (!filter.test(txt_email_newsletter.value)) 
+	{
+		alert('Please provide a valid email address.');
+		txt_email_newsletter.focus();
+        txt_email_newsletter.select();
+		return false;
+	}
+	//  if (['test@test.com', '123@123.com', 'test123@test.com'].indexOf(txt_email_newsletter.value) >= 0) 
+	//	{
+	//		alert('Please provide a valid email address. 3');
+	//		txt_email_newsletter.focus();
+	//      txt_email_newsletter.select();
+	//		return false;
+	//	}
+
 	document.getElementById("eemail_msg").innerHTML="loading...";
 	var date_now = "";
     var mynumber = Math.random();
@@ -77,18 +93,26 @@ function eemail_submitresult()
 		{
 		 	if (http_req.readyState==4 || http_req.readyState=="complete")
 			{ 
-				if((http_req.responseText).trim()=="succ")
+				if((http_req.responseText).trim() == "subscribed-successfully")
 				{
-					document.getElementById("eemail_msg").innerHTML="Subscribed successfully.";
+					document.getElementById("eemail_msg").innerHTML = "Subscribed successfully.";
 					document.getElementById("eemail_txt_email").value="";
 				}
-				else if((http_req.responseText).trim()=="exs")
+				else if((http_req.responseText).trim() == "already-exist")
 				{
-					document.getElementById("eemail_msg").innerHTML="Email already exist.";
+					document.getElementById("eemail_msg").innerHTML = "Email already exist.";
+				}
+				else if((http_req.responseText).trim() == "unexpected-error")
+				{
+					document.getElementById("eemail_msg").innerHTML = "Oops.. Unexpected error occurred.";
+				}
+				else if((http_req.responseText).trim() == "invalid-email")
+				{
+					document.getElementById("eemail_msg").innerHTML = "Invalid email address.";
 				}
 				else
 				{
-					document.getElementById("eemail_msg").innerHTML="Please try after some time.";
+					document.getElementById("eemail_msg").innerHTML = "Please try after some time.";
 					document.getElementById("eemail_txt_email").value="";
 				}
 			} 
