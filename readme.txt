@@ -23,7 +23,7 @@ Check official website for live demo [http://www.gopiplus.com/work/2010/09/25/em
 
 Email newsletter plugin have option to send HTML Mails/Newsletters to registered user, Comment author, Subscriber and Users who contacted you. Sending email is much cheaper than most other forms of communication. Email marketing has proven very successful for those who do it right. This plugin is very useful those who need to send Newsletters to users who subscribed to your blogs.
 
-Advantage of this plugin
+= Advantage of this plugin =
 
 *   No coding knowledge required to setup this plugin.
 *   Very easy installation and setup.
@@ -42,23 +42,23 @@ This is the first step to take with this plugin. Before sending mail to a user, 
 
 = Send Mail to a Registered User =
 
-Use this page for sending mails to registered users. On this page you find the email addresses of all registered users listed with a check box option. If you don’t want to mail any particular user(s), you can uncheck the email(s) on this list. After you selected the users, click on the email subject you first created and press the Send Mail button.  [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+Use this page for sending mails to registered users. On this page you find the email addresses of all registered users listed with a check box option. If you don't want to mail any particular user(s), you can uncheck the email(s) on this list. After you selected the users, click on the email subject you first created and press the Send Mail button.  [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
 = Send Mail to Commenters =
 
-Use this page for sending mails to commenters. On this page you find the email addresses of all commenters listed with a check box option. If you don’t want to mail any particular commenter(s), you can uncheck the email(s) on this list. After you selected the commenters, click on the email subject you first created and press the Send Mail button. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+Use this page for sending mails to commenters. On this page you find the email addresses of all commenters listed with a check box option. If you don't want to mail any particular commenter(s), you can uncheck the email(s) on this list. After you selected the commenters, click on the email subject you first created and press the Send Mail button. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
 = Send Mail to Subscribed Users =
 
-This plugin offers a new option. It’s a widget that you can drag to your sidebar. It serves as a subscribe option for your site visitors. Use this page to send mails to visitors who subscribed to your newsletter through the widget. You find them all listed with a check box option. If you don’t want to mail any particular subscriber(s), you can uncheck the email(s) on this list. After you selected the subscribers, click on the email subject you first created and press the Send Mail button. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+This plugin offers a new option. It's a widget that you can drag to your sidebar. It serves as a subscribe option for your site visitors. Use this page to send mails to visitors who subscribed to your newsletter through the widget. You find them all listed with a check box option. If you don't want to mail any particular subscriber(s), you can uncheck the email(s) on this list. After you selected the subscribers, click on the email subject you first created and press the Send Mail button. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
-You can see all subscribers on the ‘View Subscriber’ page.
+You can see all subscribers on the 'View Subscriber' page.
 
 = Send Mail to Users who Contacted You =
 
-This plugin now comes with a ‘Simple Contact Form’. I thought it would be useful to combine this feature with the newsletter plugin. After installing the contact form, your site visitors may contact you using this form. Those users then are visible to you on this page, and you can email them by using the same procedure as outlined before click here. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
+This plugin now comes with a 'Simple Contact Form'. I thought it would be useful to combine this feature with the newsletter plugin. After installing the contact form, your site visitors may contact you using this form. Those users then are visible to you on this page, and you can email them by using the same procedure as outlined before click here. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
-Install the plugin ‘Simple Contact Form’ on your site. If it is not useful to you, omit this menu.
+Install the plugin 'Simple Contact Form' on your site. If it is not useful to you, omit this menu.
 
 = Export Users to CSV =
 
