@@ -452,7 +452,7 @@ function eemail_widget($args)
 	}
 }
 
-//add_shortcode( 'email-newsletter-plugin', 'eemail_form_shortcode' );
+add_shortcode( 'email-newsletter-plugin', 'eemail_form_shortcode' );
 
 function eemail_form_shortcode( $atts ) 
 {
