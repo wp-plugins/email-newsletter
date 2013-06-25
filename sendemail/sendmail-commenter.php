@@ -71,26 +71,30 @@ if ($eemail_error_found == TRUE && isset($eemail_errors[0]) == TRUE)
 		<a class="button add-new-h2" href="admin.php?page=sendmail-commenter&search=P,Q,R">P, Q, R</a>&nbsp;&nbsp;
 		<a class="button add-new-h2" href="admin.php?page=sendmail-commenter&search=S,T,U">S, T, U</a>&nbsp;&nbsp;
 		<a class="button add-new-h2" href="admin.php?page=sendmail-commenter&search=V,W,X,Y,Z">V, W, X, Y, Z</a>&nbsp;&nbsp;
-		<a class="button add-new-h2" href="admin.php?page=sendmail-commenter&search=0,1,2,3,4,5,6,7,8,9">0 - 9</a>
+		<a class="button add-new-h2" href="admin.php?page=sendmail-commenter&search=0,1,2,3,4,5,6,7,8,9">0 - 9</a>&nbsp;&nbsp;
+		<a class="button add-new-h2" href="admin.php?page=sendmail-commenter&search=ALL">ALL</a>
 	</div>
 	<form name="form_eemail" method="post" action="#" onsubmit="return _send_email_submit()"  >
 	<?php
 	$sSql = "SELECT DISTINCT(comment_author_email) as user_email, `comment_author`,`comment_author_email` FROM ". $wpdb->prefix . "comments WHERE comment_author_email <> ''"; 
 	if($search <> "")
 	{
-		$array = explode(',', $search);
-		$length = count($array);
-		for ($i = 0; $i < $length; $i++) 
+		if($search <> "ALL")
 		{
-			if(@$i == 0)
+			$array = explode(',', $search);
+			$length = count($array);
+			for ($i = 0; $i < $length; $i++) 
 			{
-				$sSql = $sSql . " and";
+				if(@$i == 0)
+				{
+					$sSql = $sSql . " and";
+				}
+				else
+				{
+					$sSql = $sSql . " or";
+				}
+				$sSql = $sSql . " comment_author_email LIKE '" . $array[$i]. "%'";
 			}
-			else
-			{
-				$sSql = $sSql . " or";
-			}
-			$sSql = $sSql . " comment_author_email LIKE '" . $array[$i]. "%'";
 		}
 	}
 	$sSql = $sSql . " ORDER BY comment_author_email";

@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in. also we have email subscriber option.
 Author: Gopi.R
-Version: 14.0
+Version: 14.1
 Author http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -216,6 +216,11 @@ function eemail_send_mail($recipients = array(), $eemail_id = 0, $source = "")
 	$sender_email = get_option('eemail_from_email');
 	$eemail_email_type = get_option('eemail_email_type');
 	$eemail_un_option = get_option('eemail_un_option');
+	
+	if($eemail_email_type == "")
+	{
+		$eemail_email_type = "HTML";
+	}
 	
 	// Check emails from address and from name.
 	if(trim($sender_name) == "" || trim($sender_email) == '')

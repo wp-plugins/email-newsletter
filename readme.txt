@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 14.0
+Stable tag: 14.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -204,6 +204,10 @@ Small typo error fixed on the search alphabet. Now we can search the emails star
 6. New Short Code option to load the Subscription Box in posts and pages.
 7. Improved documentation.
 
+= 14.1 =
+
+1. Search "ALL" option added in send mail pages.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -285,3 +289,7 @@ Small typo error fixed on the search alphabet. Now we can search the emails star
 5. Added security thingy that wordpress offers us.
 6. New Short Code option to load the Subscription Box in posts and pages.
 7. Improved documentation.
+
+= 14.1 =
+
+1. Search "ALL" option added in send mail pages.
