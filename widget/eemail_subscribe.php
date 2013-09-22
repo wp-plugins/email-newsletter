@@ -53,7 +53,7 @@ if($Email <> "")
 			}
 			
 			$headers = "MIME-Version: 1.0" . "\r\n";
-			$headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+			$headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
 			$headers .= "From: \"$eemail_from_name\" <$eemail_from_email>\n";
 			
 			if(trim($eemail_admin_email_option) == "YES")

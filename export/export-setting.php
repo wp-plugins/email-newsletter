@@ -20,19 +20,19 @@ if ($_SESSION['exportcsv'] == "YES")
 			{
 				case "view_subscriber":
 					$data = $wpdb->get_results("select eemail_email_sub as 'Subscriber Email', eemail_date_sub as 'Date' from ".WP_eemail_TABLE_SUB." where 1=1 ORDER BY eemail_date_sub");
-					download($data, 's');
+					download($data, 's', '');
 					break;
 				case "registered_user":
 					$data = $wpdb->get_results("select user_nicename as 'Name', user_email as 'Email' from ". $wpdb->prefix . "users ORDER BY user_nicename");
-					download($data, 'r');
+					download($data, 'r', '');
 					break;
 				case "commentposed_user":
 					$data = $wpdb->get_results("SELECT DISTINCT(comment_author_email) as Email, comment_author as 'Comment Author'  FROM ". $wpdb->prefix . "comments WHERE comment_author_email <> '' ORDER BY comment_author_email");
-					download($data, 'c');
+					download($data, 'c', '');
 					break;
 				case "contact_user":
 					$data = $wpdb->get_results("select distinct gCF_email as Email, gCF_name as Name from ".WP_eemail_TABLE_SCF." ORDER BY gCF_email");
-					download($data, 'cc');
+					download($data, 'cc', '');
 					break;
 				default:
 					echo "Unexpected url submit has been detected 4";

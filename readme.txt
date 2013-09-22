@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 14.1
+Tested up to: 3.6.1
+Stable tag: 14.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -293,3 +293,8 @@ Small typo error fixed on the search alphabet. Now we can search the emails star
 = 14.1 =
 
 1. Search "ALL" option added in send mail pages.
+
+= 14.2 =
+
+1. Fixed small bug on export csv page (Missing argument 3 for download).
+2. Charset utf-8 has been updated in the subscribe email page, so that it will support email for all the languages.
