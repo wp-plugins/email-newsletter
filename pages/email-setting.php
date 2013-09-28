@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <script language="javascript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/email-newsletter/pages/pages-setting.js"></script>
 <div class="wrap">
   <div class="form-wrap">
@@ -64,7 +65,7 @@
 	<label for="tag-title">From email address</label>
 	<input name="eemail_from_email" id="eemail_from_email" type="text" value="<?php echo $eemail_from_email; ?>" maxlength="150" size="50" />
 	<p>Please enter your from email address.</p>
-	
+	<br />
 	<label for="tag-title">Send auto email to admin</label>
 	<select name="eemail_admin_email_option" id="eemail_admin_email_option">
 		<option value=''>Select</option>
@@ -84,7 +85,7 @@
 	<label for="tag-title">Admin email content</label>
 	<textarea name="eemail_admin_email_content" id="eemail_admin_email_content" cols="100" rows="6"><?php echo esc_html(stripslashes($eemail_admin_email_content)); ?></textarea>
 	<p>Please enter admin email content. (Keyword: ##USEREMAIL##)</p>
-	
+	<br />
 	<label for="tag-title">Send auto email to subscriber</label>
 	<select name="eemail_user_email_option" id="eemail_user_email_option">
 		<option value=''>Select</option>
@@ -100,7 +101,7 @@
 	<label for="tag-title">Subscriber email content</label>
 	<textarea name="eemail_user_email_content" id="eemail_user_email_content" cols="100" rows="6"><?php echo esc_html(stripslashes($eemail_user_email_content)); ?></textarea>
 	<p>Please enter subscriber welcome email content.</p>
-	
+	<br />
 	<label for="tag-title">Email type</label>
 	<select name="eemail_email_type" id="eemail_email_type">
 		<option value='HTML' <?php if($eemail_email_type == 'HTML') { echo 'selected' ; } ?>>HTML Email</option>

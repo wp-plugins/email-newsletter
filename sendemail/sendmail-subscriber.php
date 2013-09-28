@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
 $eemail_errors = array();
 $eemail_success = '';
@@ -77,6 +78,7 @@ if ($eemail_error_found == TRUE && isset($eemail_errors[0]) == TRUE)
 	<form name="form_eemail" method="post" action="#" onsubmit="return _send_email_submit()"  >
 	<?php
 	$sSql = "select distinct eemail_email_sub, eemail_id_sub from ".WP_eemail_TABLE_SUB." where 1=1"; 
+	$sSql = $sSql . " and (eemail_status_sub ='YES' OR eemail_status_sub ='SIG' OR eemail_status_sub ='CON')";
 	if($search <> "")
 	{
 		if($search <> "ALL")

@@ -1,6 +1,8 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <div class="wrap">
 <?php
 $did = isset($_GET['did']) ? $_GET['did'] : '0';
+$search = isset($_GET['search']) ? $_GET['search'] : 'A,B,C';
 
 // First check if ID exist with requested ID
 $sSql = $wpdb->prepare(
@@ -86,7 +88,7 @@ if ($eemail_error_found == FALSE && strlen($eemail_success) > 0)
 {
 ?>
   <div class="updated fade">
-    <p><strong><?php echo $eemail_success; ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber">Click here</a> to view the details</strong></p>
+    <p><strong><?php echo $eemail_success; ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&search=<?php echo $search; ?>">Click here</a> to view the details</strong></p>
   </div>
   <?php
 }
@@ -103,13 +105,16 @@ if ($eemail_error_found == FALSE && strlen($eemail_success) > 0)
 	  <label for="tag-image">Enter name.</label>
       <input name="eemail_name_sub" type="text" id="eemail_name_sub" value="<?php echo esc_html(stripslashes($form['eemail_name_sub'])); ?>" size="50" />
       <p>Please enter email name.</p>
-      <label for="tag-display-status">Display status</label>
+      <label for="tag-display-status">Status</label>
       <select name="eemail_status_sub" id="eemail_status_sub">
         <option value=''>Select</option>
-		<option value='YES' <?php if(strtoupper($form['eemail_status_sub'])=='YES') { echo 'selected="selected"' ; } ?>>Yes</option>
-        <option value='NO' <?php if(strtoupper($form['eemail_status_sub'])=='NO') { echo 'selected="selected"' ; } ?>>No</option>
+		<option value='YES' <?php if(strtoupper($form['eemail_status_sub'])=='YES') { echo 'selected="selected"' ; } ?>>Old Email</option>
+        <option value='SIG' <?php if(strtoupper($form['eemail_status_sub'])=='NO') { echo 'selected="selected"' ; } ?>>Single Opt In</option>
+		<option value='PEN' <?php if(strtoupper($form['eemail_status_sub'])=='PEN') { echo 'selected="selected"' ; } ?>>Not confirmed</option>
+		<option value='CON' <?php if(strtoupper($form['eemail_status_sub'])=='CON') { echo 'selected="selected"' ; } ?>>Confirmed</option>
+		<option value='UNS' <?php if(strtoupper($form['eemail_status_sub'])=='UNS') { echo 'selected="selected"' ; } ?>>Unsubscribed</option>
       </select>
-      <p>Do you want to show this email in Send Mail admin pages?.</p>
+      <p>Unsubscribed, Not confirmed emails not display in send mail page.</p>
       <input name="eemail_id_sub" id="eemail_id_sub" type="hidden" value="">
       <input type="hidden" name="eemail_form_submit" value="yes"/>
       <p class="submit">

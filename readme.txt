@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable tag: 14.2
+Stable tag: 15.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -25,16 +25,17 @@ Email newsletter plugin have option to send HTML Mails/Newsletters to registered
 
 = Advantage of this plugin =
 
-*   No coding knowledge required to setup this plugin.
-*   Very easy installation and setup.
-*   Option to send email newsletter to registered user.
-*   Option to send email newsletter to commenter (Comment author).
-*   Option to send email newsletter to users who contacted you.
-*   Option to setup email subscription box and option to send email newsletter to subscriber.
-*   Option to setup unsubscribe link in newsletter.
-*   Option to Export and Import email address.
-*   Automatic welcome email to new subscriber.
-*   Admin email notification for every new subscriber.
+1. No coding knowledge required to setup this plugin.
+2. Very easy installation and setup.
+3. Option to send email newsletter to registered user.
+4. Option to send email newsletter to commenter (Comment author).
+5. Option to send email newsletter to users who contacted you.
+6. Option to setup email subscription box and option to send email newsletter to subscriber.
+7. Option to setup unsubscribe link in newsletter.
+8. Option to Export and Import email address.
+9. Automatic welcome email to new subscriber.
+10. Admin email notification for every new subscriber.
+11. Opt In setting.
 
 = Compose Mail =
 
@@ -72,12 +73,14 @@ This new option allows you to import mail addresses into your subscription list.
 
 This option is important for your mail receivers being able to unsubscribe from your newsletter. There will be a link in each newsletter that mail receivers can click for unsubscribing from your mailing list. [More Info](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
 
+= Opt In Setting =
+
+Double Opt In means subscribers need to confirm their email address by an activation link sent them on a activation email message. Single Opt In means subscribers do not need to confirm their email address.
+
 = Plugin configuration =
 
 1. Drag and drop the widget.
-
 2. Add the plugin in the posts or pages using short code.
-
 3. Add directly in to the theme using PHP code.
 
 [Plugin Configuration](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)
@@ -91,35 +94,29 @@ This option is important for your mail receivers being able to unsubscribe from 
 == Frequently Asked Questions ==
 
 1. How to compose email?
-
 2. How to send email to registered user?
-
 3. How to send email to commenter's (I.e. Who posted comments to your blog)?
-
 4. How to send email to newsletter subscriber?
-
 5. How to Export & Import email address?
-
 6. How to design a Newsletter?		
+7. What is Opt In?	
+8. Please explain Opt In email flow and how its working?
+9. How to update Welcome email and Opt in email message?
+10. How to resend confirmation mail?
+11. What is status in subscriber page? and how many status we have?
+12. How to update subscription box alert message?
 
 [Answer](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
 
 == Screenshots ==
 
 1. Admin Menu. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 2. Compose Mail. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 3. Compose Mail. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 4. Send Mail to Subscribed Users. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 5. Send Mail to a Registered User. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 6. Send Mail to Commenters. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 7. Export Users to CSV. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-
 8. Import Mails. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 
 == Changelog ==
@@ -207,6 +204,17 @@ Small typo error fixed on the search alphabet. Now we can search the emails star
 = 14.1 =
 
 1. Search "ALL" option added in send mail pages.
+
+= 14.2 =
+
+1. Fixed small bug on export csv page (Missing argument 3 for download).
+2. Charset utf-8 has been updated in the subscribe email page, so that it will support email for all the languages.
+
+= 15.0 =
+
+Option to setup Double Opt In or Single Opt In.
+Double Opt In, means subscribers need to confirm their email address by an activation link sent them on a activation email message. 
+Single Opt In, means subscribers do not need to confirm their email address.
 
 == Upgrade Notice ==
 
@@ -298,3 +306,9 @@ Small typo error fixed on the search alphabet. Now we can search the emails star
 
 1. Fixed small bug on export csv page (Missing argument 3 for download).
 2. Charset utf-8 has been updated in the subscribe email page, so that it will support email for all the languages.
+
+= 15.0 =
+
+Option to setup Double Opt In or Single Opt In.
+Double Opt In, means subscribers need to confirm their email address by an activation link sent them on a activation email message. 
+Single Opt In, means subscribers do not need to confirm their email address.

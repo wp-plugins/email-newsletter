@@ -8,27 +8,33 @@ function _eemail_submit()
 		document.eemail_form.eemail_email_sub.focus();
 		return false;
 	}
-	else if(document.eemail_form.eemail_name_sub.value=="")
-	{
-		alert("Please enter email name.")
-		document.eemail_form.eemail_name_sub.focus();
-		return false;
-	}
+	//else if(document.eemail_form.eemail_name_sub.value=="")
+//	{
+//		alert("Please enter email name.")
+//		document.eemail_form.eemail_name_sub.focus();
+//		return false;
+//	}
 	else if(document.eemail_form.eemail_status_sub.value=="" || document.eemail_form.eemail_status_sub.value=="Select")
 	{
-		alert("Please select the display status.")
+		alert("Please select the status.")
 		document.eemail_form.eemail_status_sub.focus();
 		return false;
 	}
 }
 
-function _eemail_delete(id)
+function _eemail_delete(id,query)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.frm_eemail_display.action="admin.php?page=view-subscriber&ac=del&did="+id;
+		document.frm_eemail_display.action="admin.php?page=view-subscriber&search="+query+"&ac=del&did="+id;
 		document.frm_eemail_display.submit();
 	}
+}
+
+function _eemail_resend(id,query)
+{
+	document.frm_eemail_display.action="admin.php?page=view-subscriber&ac=resend&search="+query+"&did="+id;
+	document.frm_eemail_display.submit();
 }
 
 function _eemail_redirect()
@@ -100,13 +106,26 @@ function _subscribermultipledelete()
 		return false;
 	}
 	
-	if(confirm("Do you want to delete selected record(s)?"))
+	if(document.frm_eemail_display.action.value == "delete")
 	{
-		if(confirm("Are you sure you want to delete?"))
+		if(confirm("Do you want to delete selected record(s)?"))
+		{
+			if(confirm("Are you sure you want to delete?"))
+			{
+				var searchquery = document.frm_eemail_display.searchquery.value;
+				document.frm_eemail_display.frm_eemail_bulkaction.value = 'delete';
+				document.frm_eemail_display.action="admin.php?page=view-subscriber&bulkaction=delete&search=" + searchquery;
+				document.frm_eemail_display.submit();
+			}
+		}
+	}
+	else if(document.frm_eemail_display.action.value == "resend")
+	{
+		if(confirm("Do you want to resend confirmation email? \nAlso please note, this will update subscriber current status to 'Not confirmed'."))
 		{
 			var searchquery = document.frm_eemail_display.searchquery.value;
-			document.frm_eemail_display.frm_eemail_bulkaction.value = 'delete';
-			document.frm_eemail_display.action="admin.php?page=view-subscriber&bulkaction=delete&search=" + searchquery;
+			document.frm_eemail_display.frm_eemail_bulkaction.value = 'resend';
+			document.frm_eemail_display.action="admin.php?page=view-subscriber&bulkaction=resend&search=" + searchquery;
 			document.frm_eemail_display.submit();
 		}
 	}

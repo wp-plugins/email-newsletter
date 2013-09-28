@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
 if(strtoupper($wpdb->get_var("show tables like '". WP_eemail_TABLE_SCF . "'")) != strtoupper(WP_eemail_TABLE_SCF))  
 {

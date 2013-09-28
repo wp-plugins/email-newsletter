@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in. also we have email subscriber option.
 Author: Gopi.R
-Version: 14.2
+Version: 15.0
 Author http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -132,6 +132,22 @@ function eemail_install()
 	add_option('eemail_un_option', "Yes");
 	add_option('eemail_un_text', "If you do not want to receive any more newsletters, Please <a href='##LINK##'>click here</a>");
 	add_option('eemail_un_link', $unsubscribelink);
+	
+	$eemail_msgdis_1 = '<html><head><title>Email Newsletter</title></head><body style="background:#F2F2F2;font-family:Verdana, Arial, Helvetica, sans-serif;padding-top:65px;text-align:center;"><div style="background:#FFF;border:1px solid #ddd;border-radius:6px;max-width:580px;margin:0 auto;padding:34px 0 24px;width:580px"><div class="title"><h2>Thank You</h2><p>You have been successfully subscribed to our newsletter.</p></div></div></body></html>';
+	$eemail_msgdis_3 = '<html><head><title>Email Newsletter</title></head><body style="background:#F2F2F2;font-family:Verdana, Arial, Helvetica, sans-serif;padding-top:65px;text-align:center;"><div style="background:#FFF;border:1px solid #ddd;border-radius:6px;max-width:580px;margin:0 auto;padding:34px 0 24px;width:580px"><div class="title"><h2>Thank You</h2><p>You have been successfully unsubscribed. You will no longer hear from us.</p></div></div></body></html>';
+	
+	$doubleoptinlink = get_option('siteurl') . "/wp-content/plugins/email-newsletter/double-optin/double-optin.php?rand=##rand##&guid=##guid##&user=##user##";
+	add_option('eemail_opt_option', "double-optin");
+	add_option('eemail_opt_subject', "Please confirm subscription (Email Newsletter)");
+	add_option('eemail_opt_content', "A newsletter subscription request for this email address was received. Please confirm it by <a href='##LINK##'>clicking here</a>. If you cannot click the link, please use the following link. <br /><br /> ##LINK## <br /><br /> Thanks.");
+	add_option('eemail_opt_link', $doubleoptinlink);
+	
+	add_option('eemail_msgdis_1', $eemail_msgdis_1);
+	add_option('eemail_msgdis_2', "Oops.. This subscription cant be completed, sorry. The email address is blocked or already subscribed. Thank you.");
+	add_option('eemail_msgdis_3', $eemail_msgdis_3);
+	add_option('eemail_msgdis_4', "Oops.. We are getting some technical error. Please try again or contact admin.");
+	add_option('eemail_msgdis_5', "Oops.. Unexpected error occurred. Please try again.");
+	add_option('eemail_msgdis_6', "Oops.. Unexpected error occurred. Please try again.");
 }
 
 function eemail_admin_option() 
@@ -580,6 +596,68 @@ function add_admin_menu_email_testemail()
 	include('sendemail/sendmail-testing.php');
 }
 
+function add_admin_menu_opt_in() 
+{
+	global $wpdb;
+	include('pages/optin-setting.php');
+}
+
+function ViewSubscriberResendEmail($did) 
+{
+	global $wpdb;
+	$sSql = $wpdb->prepare("SELECT * FROM ".WP_eemail_TABLE_SUB." WHERE eemail_id_sub = %d LIMIT 1", array($did));
+	$data = array();
+	$data = $wpdb->get_row($sSql, ARRAY_A);
+	if(count($data) > 0)
+	{
+		$arrFromEmail = array();
+		$arrCheck = GetFromEmail();
+		$eemail_from_name = $arrCheck[0]['eemail_from_name'];
+		$eemail_from_email = $arrCheck[0]['eemail_from_email'];
+		
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
+		$headers .= "From: \"$eemail_from_name\" <$eemail_from_email>\n";
+		
+		$to_dbid = $data['eemail_id_sub'];
+		$to_email = $data['eemail_email_sub'];
+		
+		$to_guid = myguid();
+		$to_subject = get_option('eemail_opt_subject');
+		$to_message = get_option('eemail_opt_content');
+		$eemail_opt_link = get_option('eemail_opt_link');
+	
+		$eemail_opt_link = str_replace("##rand##", $to_dbid, $eemail_opt_link);
+		$eemail_opt_link = str_replace("##user##", $to_email, $eemail_opt_link);
+		$eemail_opt_link = str_replace("##guid##", $to_guid, $eemail_opt_link);
+		$to_message = str_replace('##LINK##', $eemail_opt_link, $to_message);		
+		$to_message = str_replace("\r\n", "<br />", $to_message);
+		
+		@wp_mail($to_email, $to_subject, $to_message, $headers);
+		
+		$sSql = $wpdb->prepare("UPDATE ".WP_eemail_TABLE_SUB." SET eemail_status_sub = 'PEN' WHERE eemail_id_sub = %d LIMIT 1",	array($to_dbid));
+		$wpdb->query($sSql);
+	}
+
+}
+
+function GetFromEmail() 
+{
+	global $wpdb;
+	$arrData = array();
+	$eemail_from_name = get_option('eemail_from_name');
+	$eemail_from_email = get_option('eemail_from_email');
+	if($eemail_from_name == "" || $eemail_from_email == "")
+	{
+		get_currentuserinfo();
+		$eemail_from_name = $user_login;
+		$eemail_from_email = $user_email;
+	}
+	$arrData[0]["eemail_from_name"] = $eemail_from_name;
+	$arrData[0]["eemail_from_email"] = $eemail_from_email;
+	return $arrData;
+}
+
 function add_admin_menu_option() 
 {
 	add_menu_page( __( 'Email Newsletter', 'email-newsletter' ), __( 'Email Newsletter', 'email-newsletter' ), 'admin_dashboard', 'email-newsletter', 'eemail_admin_option' );
@@ -593,6 +671,7 @@ function add_admin_menu_option()
 	add_submenu_page('email-newsletter', 'Widget setting', 'Setup Widget', 'administrator', 'widget-setting', 'add_admin_menu_widget_option');
 	add_submenu_page('email-newsletter', 'Email setting', 'Setup Email', 'administrator', 'email-setting', 'add_admin_menu_email_option');
 	add_submenu_page('email-newsletter', 'Unsubscribe link option', 'Setup Unsubscribe', 'administrator', 'unsubscribe-setting', 'add_unsubscribe_option');
+	add_submenu_page('email-newsletter', 'Opt In Setting', 'Opt In Setting', 'administrator', 'opt-in', 'add_admin_menu_opt_in');
 	add_submenu_page('email-newsletter', 'Export CSV', 'Export Users to CSV', 'administrator', 'export-subscriber', 'add_admin_menu_export_csv');
 	add_submenu_page('email-newsletter', 'Import emails', 'Import Mails', 'administrator', 'import-subscriber', 'add_admin_menu_import_emails');
 	add_submenu_page('email-newsletter', 'Send Test Mail', 'Send Test Mail', 'administrator', 'test-email', 'add_admin_menu_email_testemail');

@@ -17,30 +17,46 @@ $form['reff'] = isset($_GET['reff']) ? $_GET['reff'] : '';
 
 if ($form['rand'] == '' || $form['user'] == '' || $form['reff'] == '')
 {
-	echo 'Oops.. Unexpected error occurred. Please try again.';
+	$message = get_option('eemail_msgdis_6');
+	$message = str_replace("\r\n", "<br />", $message);
+	if($message == "")
+	{
+		$message = 'Oops.. Unexpected error occurred. Please try again.';
+	}
+	echo $message;
 	die;
 }
 else
 {
 	global $wpdb;
 	$result = '0';
-	$sSql = $wpdb->prepare(
-		"SELECT COUNT(*) AS `count` FROM ".WP_eemail_TABLE_SUB."
-		WHERE `eemail_id_sub` = %d and eemail_email_sub = '%s'",
+	$sSql = $wpdb->prepare("SELECT COUNT(*) AS count FROM ".WP_eemail_TABLE_SUB." WHERE eemail_id_sub = %d and eemail_email_sub = '%s' and eemail_status_sub = 'CON'",
 		$form['rand'], $form['user']);
 	$result = $wpdb->get_var($sSql);
 
 	if ($result != '1')
 	{
-		echo 'Oops.. Your email address is not in our newsletter list. Please try again.';
+		$message = get_option('eemail_msgdis_4');
+		$message = str_replace("\r\n", "<br />", $message);
+		if($message == "")
+		{
+			$message = 'Oops.. We are getting some technical error. Please try again or contact admin.';
+		}
+		echo $message;
 	}
 	else
 	{
-		$sSql = $wpdb->prepare("DELETE FROM `".WP_eemail_TABLE_SUB."` 
-					WHERE `eemail_id_sub` = %d and eemail_email_sub = '%s' 
-					LIMIT 1", $form['rand'], $form['user']);
+		  $sSql = $wpdb->prepare("UPDATE ".WP_eemail_TABLE_SUB."
+				SET eemail_status_sub = 'UNS' WHERE eemail_id_sub = %d and eemail_email_sub = '%s' LIMIT 1",array($form['rand'], $form['user']));
 			$wpdb->query($sSql);
-			echo 'You have been successfully unsubscribed.';
+			
+			$message = get_option('eemail_msgdis_3');
+			$message = str_replace("\r\n", "<br />", $message);
+			if($message == "")
+			{
+				$message = 'You have been successfully unsubscribed.';
+			}
+			echo $message;
 	}
 }
 ?>

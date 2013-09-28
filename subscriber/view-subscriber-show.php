@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
 // Form submitted, check the data
 $search = isset($_GET['search']) ? $_GET['search'] : 'A,B,C';
@@ -7,8 +8,7 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 	
 	$eemail_success = '';
 	$eemail_success_msg = FALSE;
-	
-	if (isset($_POST['frm_eemail_bulkaction']) && $_POST['frm_eemail_bulkaction'] != 'delete')
+	if (isset($_POST['frm_eemail_bulkaction']) && $_POST['frm_eemail_bulkaction'] != 'delete' && $_POST['frm_eemail_bulkaction'] != 'resend')
 	{
 		// First check if ID exist with requested ID
 		$sSql = $wpdb->prepare(
@@ -45,34 +45,71 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 				$eemail_success_msg = TRUE;
 				$eemail_success = __('Selected record was successfully deleted.', WP_eemail_UNIQUE_NAME);
 			}
+			
+			if (isset($_GET['ac']) && $_GET['ac'] == 'resend' && isset($_GET['did']) && $_GET['did'] != '')
+			{
+				$did = isset($_GET['did']) ? $_GET['did'] : '0';
+				ViewSubscriberResendEmail($did);
+				$eemail_success_msg = TRUE;
+				$eemail_success  = "Confirmation email resent successfully.";
+			}
 		}
 	}
 	else
 	{
 		check_admin_referer('eemail_form_show');
 		
-		$chk_delete = $_POST['chk_delete'];
-		if(!empty($chk_delete))
-		{			
-			$count = count($chk_delete);
-			for($i=0; $i<$count; $i++)
-			{
-				$del_id = $chk_delete[$i];
-				$sql = "delete FROM ".WP_eemail_TABLE_SUB." WHERE eemail_id_sub=".$del_id." Limit 1";
-				$wpdb->get_results($sql);
-			}
-			
-			//	Set success message
-			$eemail_success_msg = TRUE;
-			$eemail_success = __('Selected ('.$count.') record was successfully deleted.', WP_eemail_UNIQUE_NAME);
-		}
-		else
+		if (isset($_POST['frm_eemail_bulkaction']) && $_POST['frm_eemail_bulkaction'] == 'delete')
 		{
-			?>
-			<div class="error fade">
-			  <p><strong>Oops, No record was selected.</strong></p>
-			</div>
-			<?php
+			$chk_delete = $_POST['chk_delete'];
+			if(!empty($chk_delete))
+			{			
+				$count = count($chk_delete);
+				for($i=0; $i<$count; $i++)
+				{
+					$del_id = $chk_delete[$i];
+					$sql = "delete FROM ".WP_eemail_TABLE_SUB." WHERE eemail_id_sub=".$del_id." Limit 1";
+					$wpdb->get_results($sql);
+				}
+				
+				//	Set success message
+				$eemail_success_msg = TRUE;
+				$eemail_success = __('Selected ('.$count.') record was successfully deleted.', WP_eemail_UNIQUE_NAME);
+			}
+			else
+			{
+				?>
+				<div class="error fade">
+				  <p><strong>Oops, No record was selected.</strong></p>
+				</div>
+				<?php
+			}
+		}
+		elseif (isset($_POST['frm_eemail_bulkaction']) && $_POST['frm_eemail_bulkaction'] == 'resend')
+		{
+			$chk_delete = $_POST['chk_delete'];
+			if(!empty($chk_delete))
+			{			
+				$count = count($chk_delete);
+				for($i=0; $i<$count; $i++)
+				{
+					$del_id = $chk_delete[$i];
+					ViewSubscriberResendEmail($del_id);
+					$eemail_success  = "Confirmation email resent successfully.";
+				}
+				
+				//	Set success message
+				$eemail_success_msg = TRUE;
+				$eemail_success = __('Confirmation ('.$count.') emails resent successfully.', WP_eemail_UNIQUE_NAME);
+			}
+			else
+			{
+				?>
+				<div class="error fade">
+				  <p><strong>Oops, No record was selected.</strong></p>
+				</div>
+				<?php
+			}
 		}
 	}
 	
@@ -140,21 +177,21 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
         <thead>
           <tr>
             <th class="check-column" scope="col"><input type="checkbox" name="chk_delete[]" id="chk_delete[]" /></th>
-            <th scope="col" width="5%">Sno</th>
+            <th scope="col">Sno</th>
             <th scope="col">Email address</th>
-            <th scope="col" width="10%">Action</th>
-			<th scope="col" width="10%">Display</th>
-            <th scope="col" width="10%">Email db id</th>
+			<th scope="col">Status</th>
+            <th scope="col">DB id</th>
+			<th scope="col">Action</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th class="check-column" scope="col"><input type="checkbox" name="chk_delete[]" id="chk_delete[]" /></th>
-            <th scope="col" width="5%">Sno</th>
+            <th scope="col">Sno</th>
             <th scope="col">Email address</th>
-            <th scope="col" width="10%">Action</th>
-			<th scope="col" width="10%">Display</th>
-            <th scope="col" width="10%">Email db id</th>
+			<th scope="col">Double Opt-In</th>
+            <th scope="col">DB id</th>
+			<th scope="col">Action</th>
           </tr>
         </tfoot>
         <tbody>
@@ -170,10 +207,49 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
           <tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
             <td align="left"><input name="chk_delete[]" id="chk_delete[]" type="checkbox" value="<?php echo $data['eemail_id_sub'] ?>" /></td>
             <td><?php echo $i; ?></td>
-            <td><?php echo $data['eemail_email_sub']; ?></td>
-            <td><div> <span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=edit&amp;did=<?php echo $data['eemail_id_sub']; ?>">Edit</a> | </span> <span class="trash"><a onClick="javascript:_eemail_delete('<?php echo $data['eemail_id_sub']; ?>')" href="javascript:void(0);">Delete</a></span> </div></td>
-            <td><?php echo $data['eemail_status_sub']; ?></td>
+            <td><?php echo $data['eemail_email_sub']; ?></td>        
+            <td>
+			<?php
+			if($data['eemail_status_sub'] == "YES")
+			{
+				?>Old Email<?php
+			}
+			elseif($data['eemail_status_sub'] == "SIG")
+			{
+				?>Single Opt In<?php
+			}
+			elseif($data['eemail_status_sub'] == "PEN")
+			{
+				?>Not confirmed<?php
+			}
+			elseif($data['eemail_status_sub'] == "CON")
+			{
+				?>Confirmed<?php
+			}
+			elseif($data['eemail_status_sub'] == "UNS")
+			{
+				?>Unsubscribed<?php
+			}
+			else
+			{
+				?>Old Email<?php
+			}
+			?>
+			</td>
 			<td><?php echo $data['eemail_id_sub']; ?></td>
+			<td><div> 
+			<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=edit&search=<?php echo $search; ?>&amp;did=<?php echo $data['eemail_id_sub']; ?>">Edit</a> | </span> 
+			<span class="trash"><a onClick="javascript:_eemail_delete('<?php echo $data['eemail_id_sub']; ?>','<?php echo $search; ?>')" href="javascript:void(0);">Delete</a></span>
+			<?php
+			if($data['eemail_status_sub'] != "CON")
+			{
+				?>
+					<span class="edit"> | <a onClick="javascript:_eemail_resend('<?php echo $data['eemail_id_sub']; ?>','<?php echo $search; ?>')" href="javascript:void(0);">Resend Confirmation </a></span> 
+				<?php
+			}
+			?>
+			</div>
+			</td>
           </tr>
           <?php
 					$i = $i+1;
@@ -200,6 +276,7 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 			<select name="action" id="action">
 				<option value="">Bulk Actions</option>
 				<option value="delete">Delete</option>
+				<option value="resend">Resend Confirmation</option>
 			</select>
 			<input type="submit" value="Apply" class="button action" id="doaction" name="">
 		</div>

@@ -98,6 +98,11 @@ function eemail_submitresult()
 					document.getElementById("eemail_msg").innerHTML = "Subscribed successfully.";
 					document.getElementById("eemail_txt_email").value="";
 				}
+				else if((http_req.responseText).trim() == "subscribed-pending-doubleoptin")
+				{
+					alert('You have successfully subscribed to the newsletter. You will receive a confirmation email in few minutes.\nPlease follow the link in it to confirm your subscription.\nIf the email takes more than 15 minutes to appear in your mailbox, please check your spam folder.');
+					document.getElementById("eemail_msg").innerHTML = "Subscribed successfully.";
+				}
 				else if((http_req.responseText).trim() == "already-exist")
 				{
 					document.getElementById("eemail_msg").innerHTML = "Email already exist.";

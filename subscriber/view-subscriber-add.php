@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <div class="wrap">
 <?php
 $eemail_errors = array();
@@ -16,6 +17,7 @@ if (isset($_POST['eemail_form_submit']) && $_POST['eemail_form_submit'] == 'yes'
 	check_admin_referer('eemail_form_importemails');
 	
 	$form['importemails'] = isset($_POST['importemails']) ? $_POST['importemails'] : '';
+	$form['importemails_status'] = isset($_POST['importemails_status']) ? $_POST['importemails_status'] : 'CON';
 	if ($form['importemails'] == '')
 	{
 		$eemail_errors[] = __('Please enter email address.', WP_eemail_UNIQUE_NAME);
@@ -39,7 +41,7 @@ if (isset($_POST['eemail_form_submit']) && $_POST['eemail_form_submit'] == 'yes'
 					"INSERT INTO `".WP_eemail_TABLE_SUB."`
 					(`eemail_name_sub`,`eemail_email_sub`, `eemail_status_sub`, `eemail_date_sub`)
 					VALUES(%s, %s, %s, %s)",
-					array('No Name', $ArrayEmail[$i], 'YES', $CurrentDate)
+					array('No Name', $ArrayEmail[$i], $form['importemails_status'], $CurrentDate)
 				);
 				$wpdb->query($sql);
 				$Inserted = $Inserted + 1;
@@ -87,9 +89,21 @@ if ($eemail_error_found == FALSE && isset($eemail_success[0]) == TRUE)
 	<h2><?php echo WP_eemail_TITLE; ?></h2>
 	<form name="form_importemails" method="post" action="#" onsubmit="return _eemail_import()"  >
       <h3>Add email/Import email</h3>
-      <label for="tag-image">Enter email subject.</label>
+      
+	  <label for="tag-image">Enter email subject.</label>
       <textarea name="importemails" cols="120" rows="8"></textarea>
       <p>Enter the email address with comma separated (No comma at the end).</p>
+	  
+	  <label for="tag-display-status">Status</label>
+      <select name="importemails_status" id="importemails_status">
+		<option value='YES'>Old Email</option>
+        <option value='SIG'>Single Opt In</option>
+		<option value='PEN'>Not confirmed</option>
+		<option value='CON' selected="selected">Confirmed</option>
+		<option value='UNS'>Unsubscribed</option>
+      </select>
+      <p>Unsubscribed, Not confirmed emails not display in send mail page.</p>
+	  
 	  <input name="eemail_id" id="eemail_id" type="hidden" value="">
       <input type="hidden" name="eemail_form_submit" value="yes"/>
 	  <div style="padding-top:5px;"></div>
