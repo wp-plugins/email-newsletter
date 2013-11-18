@@ -3,8 +3,8 @@
 <div class="wrap">
   <div class="form-wrap">
     <div id="icon-plugins" class="icon32"></div>
-    <h2><?php echo WP_eemail_TITLE; ?></h2>
-    <h3>Email setting</h3>
+    <h2><?php _e(WP_eemail_TITLE, 'email-newsletter'); ?></h2>
+    <h3><?php _e('Email setting', 'email-newsletter'); ?></h3>
 	<?php
 	$eemail_from_name = get_option('eemail_from_name');
 	$eemail_from_email = get_option('eemail_from_email');
@@ -52,67 +52,67 @@
 		
 		?>
 		<div class="updated fade">
-			<p><strong>Details successfully updated.</strong></p>
+			<p><strong><?php _e('Details successfully updated.', 'email-newsletter'); ?></strong></p>
 		</div>
 		<?php
 	}
 	?>
 	<form name="eemail_form" method="post" action="" onsubmit="return _email_setting()" >
-	<label for="tag-title">From email name</label>
+	<label for="tag-title"><?php _e('From email name', 'email-newsletter'); ?></label>
 	<input name="eemail_from_name" id="eemail_from_name" type="text" value="<?php echo $eemail_from_name; ?>" maxlength="150" size="50" />
-	<p>Please enter your from email name.</p>
+	<p><?php _e('Please enter your from email name.', 'email-newsletter'); ?></p>
 	
-	<label for="tag-title">From email address</label>
+	<label for="tag-title"><?php _e('From email address', 'email-newsletter'); ?></label>
 	<input name="eemail_from_email" id="eemail_from_email" type="text" value="<?php echo $eemail_from_email; ?>" maxlength="150" size="50" />
-	<p>Please enter your from email address.</p>
-	<br />
-	<label for="tag-title">Send auto email to admin</label>
+	<p><?php _e('Please enter your from email address.', 'email-newsletter'); ?></p>
+	
+	<label for="tag-title"><?php _e('Send auto email to admin', 'email-newsletter'); ?></label>
 	<select name="eemail_admin_email_option" id="eemail_admin_email_option">
-		<option value=''>Select</option>
+		<option value=''><?php _e('Select', 'email-newsletter'); ?></option>
 		<option value='YES' <?php if($eemail_admin_email_option == 'YES') { echo 'selected' ; } ?>>Yes</option>
 		<option value='NO' <?php if($eemail_admin_email_option == 'NO') { echo 'selected' ; } ?>>No</option>
 	</select>
-	<p>Send email to admin when new user subscribed.</p>
+	<p><?php _e('Send email to admin when new user subscribed.', 'email-newsletter'); ?></p>
 	
-	<label for="tag-title">Admin email address</label>
+	<label for="tag-title"><?php _e('Admin email address', 'email-newsletter'); ?></label>
 	<input name="eemail_admin_email_address" id="eemail_admin_email_address" type="text" value="<?php echo $eemail_admin_email_address; ?>" maxlength="150" size="50" />
-	<p>Please enter admin email address to received email.</p>
+	<p><?php _e('Please enter admin email address to received email.', 'email-newsletter'); ?></p>
 	
-	<label for="tag-title">Admin email subject</label>
+	<label for="tag-title"><?php _e('Admin email subject', 'email-newsletter'); ?></label>
 	<input name="eemail_admin_email_subject" id="eemail_admin_email_subject" type="text" value="<?php echo $eemail_admin_email_subject; ?>" maxlength="150" size="50" />
-	<p>Please enter admin email subject.</p>
+	<p><?php _e('Please enter admin email subject.', 'email-newsletter'); ?></p>
 	
-	<label for="tag-title">Admin email content</label>
+	<label for="tag-title"><?php _e('Admin email content', 'email-newsletter'); ?></label>
 	<textarea name="eemail_admin_email_content" id="eemail_admin_email_content" cols="100" rows="6"><?php echo esc_html(stripslashes($eemail_admin_email_content)); ?></textarea>
-	<p>Please enter admin email content. (Keyword: ##USEREMAIL##)</p>
-	<br />
-	<label for="tag-title">Send auto email to subscriber</label>
+	<p><?php _e('Please enter admin email content. (Keyword: ##USEREMAIL##)', 'email-newsletter'); ?></p>
+	
+	<label for="tag-title"><?php _e('Send auto email to subscriber', 'email-newsletter'); ?></label>
 	<select name="eemail_user_email_option" id="eemail_user_email_option">
-		<option value=''>Select</option>
+		<option value=''><?php _e('Select', 'email-newsletter'); ?></option>
 		<option value='YES' <?php if($eemail_user_email_option == 'YES') { echo 'selected' ; } ?>>Yes</option>
 		<option value='NO' <?php if($eemail_user_email_option == 'NO') { echo 'selected' ; } ?>>No</option>
 	</select>
-	<p>Send welcome email to subscriber.</p>
+	<p><?php _e('Send welcome email to subscriber.', 'email-newsletter'); ?></p>
 	
-	<label for="tag-title">Subscriber email subject</label>
+	<label for="tag-title"><?php _e('Subscriber email subject', 'email-newsletter'); ?></label>
 	<input name="eemail_user_email_subject" id="eemail_user_email_subject" type="text" value="<?php echo $eemail_user_email_subject; ?>" maxlength="150" size="50" />
-	<p>Please enter Subscriber email subject.</p>
+	<p><?php _e('Please enter Subscriber email subject.', 'email-newsletter'); ?></p>
 	
-	<label for="tag-title">Subscriber email content</label>
+	<label for="tag-title"><?php _e('Subscriber email content', 'email-newsletter'); ?></label>
 	<textarea name="eemail_user_email_content" id="eemail_user_email_content" cols="100" rows="6"><?php echo esc_html(stripslashes($eemail_user_email_content)); ?></textarea>
-	<p>Please enter subscriber welcome email content.</p>
-	<br />
-	<label for="tag-title">Email type</label>
+	<p><?php _e('Please enter subscriber welcome email content.', 'email-newsletter'); ?></p>
+	
+	<label for="tag-title"><?php _e('Email type', 'email-newsletter'); ?></label>
 	<select name="eemail_email_type" id="eemail_email_type">
 		<option value='HTML' <?php if($eemail_email_type == 'HTML') { echo 'selected' ; } ?>>HTML Email</option>
 		<option value='PLAINTEXT' <?php if($eemail_email_type == 'PLAINTEXT') { echo 'selected' ; } ?>>Plain Text</option>
 	</select>
-	<p>Please enter subscriber welcome email content.</p>
+	<p><?php _e('Please enter subscriber welcome email content.', 'email-newsletter'); ?></p>
 	
 	<p style="padding-top:10px;">
-		<input type="submit" id="eemail_submit" name="eemail_submit" lang="publish" class="button add-new-h2" value="Update Settings" />
-		<input name="publish" lang="publish" class="button add-new-h2" onclick="_eemail_redirect()" value="Cancel" type="button" />
-		<input name="Help" lang="publish" class="button add-new-h2" onclick="_eemail_help()" value="Help" type="button" />
+		<input type="submit" id="eemail_submit" name="eemail_submit" lang="publish" class="button add-new-h2" value="<?php _e('Update Settings', 'email-newsletter'); ?>" />
+		<input name="publish" lang="publish" class="button add-new-h2" onclick="_eemail_redirect()" value="<?php _e('Cancel', 'email-newsletter'); ?>" type="button" />
+		<input name="Help" lang="publish" class="button add-new-h2" onclick="_eemail_help()" value="<?php _e('Help', 'email-newsletter'); ?>" type="button" />
 	</p>
 	<?php wp_nonce_field('eemail_form_email'); ?>
 	</form>

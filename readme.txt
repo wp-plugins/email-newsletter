@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 15.0
+Tested up to: 3.7.1
+Stable tag: 16.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -36,6 +36,7 @@ Email newsletter plugin have option to send HTML Mails/Newsletters to registered
 9. Automatic welcome email to new subscriber.
 10. Admin email notification for every new subscriber.
 11. Opt In setting.
+12. Support localization or internationalization (Translators Welcome)
 
 = Compose Mail =
 
@@ -105,6 +106,7 @@ Double Opt In means subscribers need to confirm their email address by an activa
 10. How to resend confirmation mail?
 11. What is status in subscriber page? and how many status we have?
 12. How to update subscription box alert message?
+13. How to translate this plugin to any language?
 
 [Answer](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)	
 
@@ -216,6 +218,12 @@ Option to setup Double Opt In or Single Opt In.
 Double Opt In, means subscribers need to confirm their email address by an activation link sent them on a activation email message. 
 Single Opt In, means subscribers do not need to confirm their email address.
 
+= 16.0 =
+
+Now this plugin support localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (email-newsletter.po) available in the languages folder.
+(Translators Welcome)
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -312,3 +320,9 @@ Small typo error fixed on the search alphabet. Now we can search the emails star
 Option to setup Double Opt In or Single Opt In.
 Double Opt In, means subscribers need to confirm their email address by an activation link sent them on a activation email message. 
 Single Opt In, means subscribers do not need to confirm their email address.
+
+= 16.0 =
+
+Now this plugin support localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (email-newsletter.po) available in the languages folder.
+(Translators Welcome)

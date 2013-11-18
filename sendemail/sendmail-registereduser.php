@@ -13,13 +13,13 @@ if (isset($_POST['eemail_sendmail_registereduser']) && $_POST['eemail_sendmail_r
 	$form['eemail_subject_drop'] = isset($_POST['eemail_subject_drop']) ? $_POST['eemail_subject_drop'] : '';
 	if ($form['eemail_subject_drop'] == '')
 	{
-		$eemail_errors[] = __('Please select email subject.', WP_eemail_UNIQUE_NAME);
+		$eemail_errors[] = __('Please select email subject.', 'email-newsletter');
 		$eemail_error_found = TRUE;
 	}
 	$form['eemail_checked'] = isset($_POST['eemail_checked']) ? $_POST['eemail_checked'] : '';
 	if ($form['eemail_checked'] == '')
 	{
-		$eemail_errors[] = __('Please select email address.', WP_eemail_UNIQUE_NAME);
+		$eemail_errors[] = __('Please select email address.', 'email-newsletter');
 		$eemail_error_found = TRUE;
 	}
 	$recipients = $_POST['eemail_checked'];
@@ -37,7 +37,7 @@ if (isset($_POST['eemail_sendmail_registereduser']) && $_POST['eemail_sendmail_r
 			
 			if ($result != '1')
 			{
-				?><div class="error fade"><p><strong>Oops, selected details doesn't exist</strong></p></div><?php
+				?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'email-newsletter'); ?></strong></p></div><?php
 			}
 			else
 			{
@@ -61,8 +61,8 @@ if ($eemail_error_found == TRUE && isset($eemail_errors[0]) == TRUE)
 <div class="wrap">
   <div class="form-wrap">
     <div id="icon-plugins" class="icon32"></div>
-    <h2><?php echo WP_eemail_TITLE; ?> (Send email to registered users)</h2>
-	<h3>Select email address from registered users list:</h3>
+    <h2><?php _e(WP_eemail_TITLE, 'email-newsletter'); ?> <?php _e('(Send email to registered users)', 'email-newsletter'); ?></h2>
+	<h3><?php _e('Select email address from registered users list:', 'email-newsletter'); ?></h3>
 	<div style="padding-bottom:14px;padding-top:5px;">
 		<a class="button add-new-h2" href="admin.php?page=sendmail-registereduser&search=A,B,C">A, B, C</a>&nbsp;&nbsp;
 		<a class="button add-new-h2" href="admin.php?page=sendmail-registereduser&search=D,E,F">D, E, F</a>&nbsp;&nbsp;
@@ -142,11 +142,11 @@ if ($eemail_error_found == TRUE && isset($eemail_errors[0]) == TRUE)
 		{
 			$searchdisplay = $search;
 		}
-		echo "No email address available for this search result <strong>(".$searchdisplay.")</strong>. Please click above buttons to search.";
+		_e($searchdisplay . ' - No email address available for this search result. Please click above buttons to search.', 'email-newsletter');
 	}
 	?>
 	<div style="padding-top:14px;">
-		Total emails: <?php echo $count; ?>
+		<?php _e('Total emails:', 'email-newsletter'); ?> <?php echo $count; ?>
 	</div>
 	<div style="padding-top:14px;">
 		<input class="button add-new-h2" type="hidden" name="send" value="true" />
@@ -166,17 +166,17 @@ if ($eemail_error_found == TRUE && isset($eemail_errors[0]) == TRUE)
 		}
 	}
 	?>
-	<h3>Select email subject</h3>
+	<h3><?php _e('Select email subject', 'email-newsletter'); ?></h3>
 	<div>
 		<select name="eemail_subject_drop" id="eemail_subject_drop">
-			<option value=""> == Select Email Subject == </option>
+			<option value=""><?php _e(' == Select Email Subject == ', 'email-newsletter'); ?></option>
 			<?php echo $eemail_subject_drop_val; ?>
 		</select>
 	</div>
 	<div style="padding-top:20px;">
-	<input type="submit" name="Submit" class="button add-new-h2" value="Send Email" style="width:160px;" />&nbsp;&nbsp;
-	<input name="publish" lang="publish" class="button add-new-h2" onclick="_eemail_redirect()" value="Cancel" type="button" />&nbsp;&nbsp;
-    <input name="Help" lang="publish" class="button add-new-h2" onclick="_eemail_help()" value="Help" type="button" />
+	<input type="submit" name="Submit" class="button add-new-h2" value="<?php _e('Send Email', 'email-newsletter'); ?>" style="width:160px;" />&nbsp;&nbsp;
+	<input name="publish" lang="publish" class="button add-new-h2" onclick="_eemail_redirect()" value="<?php _e('Cancel', 'email-newsletter'); ?>" type="button" />&nbsp;&nbsp;
+    <input name="Help" lang="publish" class="button add-new-h2" onclick="_eemail_help()" value="<?php _e('Help', 'email-newsletter'); ?>" type="button" />
 	</div>
 	<?php wp_nonce_field('eemail_sendmail_registereduser'); ?>
 	<input type="hidden" name="eemail_sendmail_registereduser" id="eemail_sendmail_registereduser" value="yes"/>

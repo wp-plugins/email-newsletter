@@ -23,7 +23,7 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 		{
 			?>
 			<div class="error fade">
-			  <p><strong>Oops, selected details doesn't exist (1).</strong></p>
+			  <p><strong><?php _e('Oops, selected details doesnt exist (1).', 'email-newsletter'); ?></strong></p>
 			</div>
 			<?php
 		}
@@ -43,7 +43,7 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 				
 				//	Set success message
 				$eemail_success_msg = TRUE;
-				$eemail_success = __('Selected record was successfully deleted.', WP_eemail_UNIQUE_NAME);
+				$eemail_success = __('Selected record was successfully deleted.', 'email-newsletter');
 			}
 			
 			if (isset($_GET['ac']) && $_GET['ac'] == 'resend' && isset($_GET['did']) && $_GET['did'] != '')
@@ -51,7 +51,7 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 				$did = isset($_GET['did']) ? $_GET['did'] : '0';
 				ViewSubscriberResendEmail($did);
 				$eemail_success_msg = TRUE;
-				$eemail_success  = "Confirmation email resent successfully.";
+				$eemail_success  = __('Confirmation email resent successfully.', 'email-newsletter');
 			}
 		}
 	}
@@ -74,13 +74,13 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 				
 				//	Set success message
 				$eemail_success_msg = TRUE;
-				$eemail_success = __('Selected ('.$count.') record was successfully deleted.', WP_eemail_UNIQUE_NAME);
+				$eemail_success = __($count . ' Selected record was successfully deleted.', 'email-newsletter');
 			}
 			else
 			{
 				?>
 				<div class="error fade">
-				  <p><strong>Oops, No record was selected.</strong></p>
+				  <p><strong><?php _e('Oops, No record was selected.', 'email-newsletter'); ?></strong></p>
 				</div>
 				<?php
 			}
@@ -95,18 +95,18 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 				{
 					$del_id = $chk_delete[$i];
 					ViewSubscriberResendEmail($del_id);
-					$eemail_success  = "Confirmation email resent successfully.";
+					$eemail_success  = __('Confirmation email resent successfully.', 'email-newsletter');
 				}
 				
 				//	Set success message
 				$eemail_success_msg = TRUE;
-				$eemail_success = __('Confirmation ('.$count.') emails resent successfully.', WP_eemail_UNIQUE_NAME);
+				$eemail_success = __($count . ' Confirmation emails resent successfully.', 'email-newsletter');
 			}
 			else
 			{
 				?>
 				<div class="error fade">
-				  <p><strong>Oops, No record was selected.</strong></p>
+				  <p><strong><?php _e('Oops, No record was selected.', 'email-newsletter'); ?></strong></p>
 				</div>
 				<?php
 			}
@@ -127,8 +127,8 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 <link rel="stylesheet" type="text/css" href="<?php echo EMAIL_PLUGIN_URL; ?>/inc/admin-css.css" />
 <div class="wrap">
   <div id="icon-plugins" class="icon32"></div>
-  <h2><?php echo WP_eemail_TITLE; ?></h2>
-  <h3>View subscriber <a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add">Add New</a></h3>
+  <h2><?php _e(WP_eemail_TITLE, 'email-newsletter'); ?></h2>
+  <h3><?php _e('View subscriber', 'email-newsletter'); ?> <a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add"><?php _e('Add New', 'email-newsletter'); ?></a></h3>
   <div class="tool-box">
     <?php
 		$sSql = "SELECT * FROM `".WP_eemail_TABLE_SUB."` where 1=1";
@@ -166,10 +166,10 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 			<a class="button add-new-h2" href="admin.php?page=view-subscriber&search=0,1,2,3,4,5,6,7,8,9">0-9</a> 
 		<span>
 		<span style="float:right;">
-			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add">Add Email</a> 
-			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add">Import Email</a> 
-			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=export-subscriber">Export Email (CSV)</a> 
-			<a class="button add-new-h2" target="_blank" href="<?php echo WP_eemail_FAV; ?>">Help</a> 
+			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add"><?php _e('Add Email', 'email-newsletter'); ?></a> 
+			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add"><?php _e('Import Email', 'email-newsletter'); ?></a> 
+			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=export-subscriber"><?php _e('Export Email (CSV)', 'email-newsletter'); ?></a> 
+			<a class="button add-new-h2" target="_blank" href="<?php echo WP_eemail_FAV; ?>"><?php _e('Help', 'email-newsletter'); ?></a> 
 		</span>
     </div>
     <form name="frm_eemail_display" method="post" onsubmit="return _subscribermultipledelete()">
@@ -177,21 +177,21 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
         <thead>
           <tr>
             <th class="check-column" scope="col"><input type="checkbox" name="chk_delete[]" id="chk_delete[]" /></th>
-            <th scope="col">Sno</th>
-            <th scope="col">Email address</th>
-			<th scope="col">Status</th>
-            <th scope="col">DB id</th>
-			<th scope="col">Action</th>
+            <th scope="col"><?php _e('Sno', 'email-newsletter'); ?></th>
+            <th scope="col"><?php _e('Email address', 'email-newsletter'); ?></th>
+			<th scope="col"><?php _e('Status', 'email-newsletter'); ?></th>
+            <th scope="col"><?php _e('DB id', 'email-newsletter'); ?></th>
+			<th scope="col"><?php _e('Action', 'email-newsletter'); ?></th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th class="check-column" scope="col"><input type="checkbox" name="chk_delete[]" id="chk_delete[]" /></th>
-            <th scope="col">Sno</th>
-            <th scope="col">Email address</th>
-			<th scope="col">Double Opt-In</th>
-            <th scope="col">DB id</th>
-			<th scope="col">Action</th>
+            <th scope="col"><?php _e('Sno', 'email-newsletter'); ?></th>
+            <th scope="col"><?php _e('Email address', 'email-newsletter'); ?></th>
+			<th scope="col"><?php _e('Status', 'email-newsletter'); ?></th>
+            <th scope="col"><?php _e('DB id', 'email-newsletter'); ?></th>
+			<th scope="col"><?php _e('Action', 'email-newsletter'); ?></th>
           </tr>
         </tfoot>
         <tbody>
@@ -238,13 +238,13 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 			</td>
 			<td><?php echo $data['eemail_id_sub']; ?></td>
 			<td><div> 
-			<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=edit&search=<?php echo $search; ?>&amp;did=<?php echo $data['eemail_id_sub']; ?>">Edit</a> | </span> 
-			<span class="trash"><a onClick="javascript:_eemail_delete('<?php echo $data['eemail_id_sub']; ?>','<?php echo $search; ?>')" href="javascript:void(0);">Delete</a></span>
+			<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=edit&search=<?php echo $search; ?>&amp;did=<?php echo $data['eemail_id_sub']; ?>"><?php _e('Edit', 'email-newsletter'); ?></a> | </span> 
+			<span class="trash"><a onClick="javascript:_eemail_delete('<?php echo $data['eemail_id_sub']; ?>','<?php echo $search; ?>')" href="javascript:void(0);"><?php _e('Delete', 'email-newsletter'); ?></a></span>
 			<?php
 			if($data['eemail_status_sub'] != "CON")
 			{
 				?>
-					<span class="edit"> | <a onClick="javascript:_eemail_resend('<?php echo $data['eemail_id_sub']; ?>','<?php echo $search; ?>')" href="javascript:void(0);">Resend Confirmation </a></span> 
+					<span class="edit"> | <a onClick="javascript:_eemail_resend('<?php echo $data['eemail_id_sub']; ?>','<?php echo $search; ?>')" href="javascript:void(0);"><?php _e('Resend Confirmation', 'email-newsletter'); ?></a></span> 
 				<?php
 			}
 			?>
@@ -258,10 +258,10 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 			else
 			{
 				?>
-          <tr>
-            <td colspan="6" align="center">No records available.</td>
-          </tr>
-          <?php 
+				<tr>
+					<td colspan="6" align="center"><?php _e('No records available.', 'email-newsletter'); ?></td>
+				</tr>
+				<?php 
 			}
 			?>
         </tbody>
@@ -274,17 +274,17 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
     <div class="tablenav">
 		<div class="alignleft">
 			<select name="action" id="action">
-				<option value="">Bulk Actions</option>
-				<option value="delete">Delete</option>
-				<option value="resend">Resend Confirmation</option>
+				<option value=""><?php _e('Bulk Actions', 'email-newsletter'); ?></option>
+				<option value="delete"><?php _e('Delete', 'email-newsletter'); ?></option>
+				<option value="resend"><?php _e('Resend Confirmation', 'email-newsletter'); ?></option>
 			</select>
 			<input type="submit" value="Apply" class="button action" id="doaction" name="">
 		</div>
 		<div class="alignright">
-			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add">Add Email</a> 
-			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add">Import Email</a> 
-			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=export-subscriber">Export Email (CSV)</a> 
-			<a class="button add-new-h2" target="_blank" href="<?php echo WP_eemail_FAV; ?>">Help</a> 
+			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add"><?php _e('Add Email', 'email-newsletter'); ?></a> 
+			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber&amp;ac=add"><?php _e('Import Email', 'email-newsletter'); ?></a> 
+			<a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=export-subscriber"><?php _e('Export Email (CSV)', 'email-newsletter'); ?></a> 
+			<a class="button add-new-h2" target="_blank" href="<?php echo WP_eemail_FAV; ?>"><?php _e('Help', 'email-newsletter'); ?></a> 
 		</div>
     </div>
 	</form>

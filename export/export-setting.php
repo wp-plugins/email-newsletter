@@ -35,23 +35,23 @@ if ($_SESSION['exportcsv'] == "YES")
 					download($data, 'cc', '');
 					break;
 				default:
-					echo "Unexpected url submit has been detected 4";
+					_e('Unexpected url submit has been detected 4', 'email-newsletter');
 					break;
 			}
 		}
 		else
 		{
-			echo "Unexpected url submit has been detected 1";
+			_e('Unexpected url submit has been detected 1', 'email-newsletter');
 		}
 	}
 	else
 	{
-		echo "Unexpected url submit has been detected 2";
+		_e('Unexpected url submit has been detected 2', 'email-newsletter');
 	}
 }
 else
 {
-	echo "Unexpected url submit has been detected 3";
+	_e('Unexpected url submit has been detected 3', 'email-newsletter');
 }
 
 function download($arrays, $filename = 'output.csv', $option) 

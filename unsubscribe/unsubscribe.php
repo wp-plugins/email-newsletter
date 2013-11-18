@@ -21,7 +21,7 @@ if ($form['rand'] == '' || $form['user'] == '' || $form['reff'] == '')
 	$message = str_replace("\r\n", "<br />", $message);
 	if($message == "")
 	{
-		$message = 'Oops.. Unexpected error occurred. Please try again.';
+		$message = __('Oops.. Unexpected error occurred. Please try again.', 'email-newsletter');
 	}
 	echo $message;
 	die;
@@ -40,7 +40,7 @@ else
 		$message = str_replace("\r\n", "<br />", $message);
 		if($message == "")
 		{
-			$message = 'Oops.. We are getting some technical error. Please try again or contact admin.';
+			$message = __('Oops.. We are getting some technical error. Please try again or contact admin.', 'email-newsletter');
 		}
 		echo $message;
 	}
@@ -54,7 +54,7 @@ else
 			$message = str_replace("\r\n", "<br />", $message);
 			if($message == "")
 			{
-				$message = 'You have been successfully unsubscribed.';
+				$message = __('You have been successfully unsubscribed.', 'email-newsletter');
 			}
 			echo $message;
 	}

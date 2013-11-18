@@ -20,7 +20,7 @@ if (isset($_POST['eemail_form_submit']) && $_POST['eemail_form_submit'] == 'yes'
 	$form['importemails_status'] = isset($_POST['importemails_status']) ? $_POST['importemails_status'] : 'CON';
 	if ($form['importemails'] == '')
 	{
-		$eemail_errors[] = __('Please enter email address.', WP_eemail_UNIQUE_NAME);
+		$eemail_errors[] = __('Please enter email address.', 'email-newsletter');
 		$eemail_error_found = TRUE;
 	}
 
@@ -51,8 +51,8 @@ if (isset($_POST['eemail_form_submit']) && $_POST['eemail_form_submit'] == 'yes'
 				$Duplicate = $Duplicate + 1;
 			}
 		}
-		$eemail_success[] = __($Inserted . ' Email(s) was successfully imported.', WP_eemail_UNIQUE_NAME);
-		$eemail_success[] = __($Duplicate . ' Email(s) are already in our database.', WP_eemail_UNIQUE_NAME);
+		$eemail_success[] = __($Inserted . ' Email(s) was successfully imported.', 'email-newsletter');
+		$eemail_success[] = __($Duplicate . ' Email(s) are already in our database.', 'email-newsletter');
 		
 		// Reset the form fields
 		$form = array(
@@ -77,7 +77,7 @@ if ($eemail_error_found == FALSE && isset($eemail_success[0]) == TRUE)
 		<strong>
 		<?php echo $eemail_success[0]; ?> <br />
 		<?php echo $eemail_success[1]; ?> <br />
-		<a href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber">Click here</a> to view the details</strong>
+		<a href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=view-subscriber"><?php _e('Click here', 'email-newsletter'); ?></a> <?php _e(' to view the details', 'email-newsletter'); ?></strong>
 		</p>
 	  </div>
 	  <?php
@@ -86,15 +86,15 @@ if ($eemail_error_found == FALSE && isset($eemail_success[0]) == TRUE)
 <script language="javaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/email-newsletter/subscriber/subscriber-setting.js"></script>
 <div class="form-wrap">
 	<div id="icon-plugins" class="icon32"></div>
-	<h2><?php echo WP_eemail_TITLE; ?></h2>
+	<h2><?php _e(WP_eemail_TITLE, 'email-newsletter'); ?></h2>
 	<form name="form_importemails" method="post" action="#" onsubmit="return _eemail_import()"  >
-      <h3>Add email/Import email</h3>
+      <h3><?php _e('Add email/Import email', 'email-newsletter'); ?></h3>
       
-	  <label for="tag-image">Enter email subject.</label>
+	  <label for="tag-image"><?php _e('Enter email subject.', 'email-newsletter'); ?></label>
       <textarea name="importemails" cols="120" rows="8"></textarea>
-      <p>Enter the email address with comma separated (No comma at the end).</p>
+      <p><?php _e('Enter the email address with comma separated (No comma at the end).', 'email-newsletter'); ?></p>
 	  
-	  <label for="tag-display-status">Status</label>
+	  <label for="tag-display-status"><?php _e('Status', 'email-newsletter'); ?></label>
       <select name="importemails_status" id="importemails_status">
 		<option value='YES'>Old Email</option>
         <option value='SIG'>Single Opt In</option>
@@ -102,31 +102,31 @@ if ($eemail_error_found == FALSE && isset($eemail_success[0]) == TRUE)
 		<option value='CON' selected="selected">Confirmed</option>
 		<option value='UNS'>Unsubscribed</option>
       </select>
-      <p>Unsubscribed, Not confirmed emails not display in send mail page.</p>
+      <p><?php _e('Unsubscribed, Not confirmed emails not display in send mail page.', 'email-newsletter'); ?></p>
 	  
 	  <input name="eemail_id" id="eemail_id" type="hidden" value="">
       <input type="hidden" name="eemail_form_submit" value="yes"/>
 	  <div style="padding-top:5px;"></div>
       <p>
-        <input name="publish" lang="publish" class="button add-new-h2" value="Insert Details" type="submit" />
-        <input name="publish" lang="publish" class="button add-new-h2" onclick="_eemail_redirect()" value="Cancel" type="button" />
-        <input name="Help" lang="publish" class="button add-new-h2" onclick="_eemail_help()" value="Help" type="button" />
+        <input name="publish" lang="publish" class="button add-new-h2" value="<?php _e('Insert Details', 'email-newsletter'); ?>" type="submit" />
+        <input name="publish" lang="publish" class="button add-new-h2" onclick="_eemail_redirect()" value="<?php _e('Cancel', 'email-newsletter'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button add-new-h2" onclick="_eemail_help()" value="<?php _e('Help', 'email-newsletter'); ?>" type="button" />
       </p>
 	  <?php wp_nonce_field('eemail_form_importemails'); ?>
     </form>
 </div>
-<h3>Note</h3>
+<h3><?php _e('Note', 'email-newsletter'); ?></h3>
 <ol>
-	<li>Enter your email address with comma separated.</li>
-	<li>Enter maximum 25 email address at one time.</li>
-	<li>Comma not allowed at the end of the string.</li>
+	<li><?php _e('Enter your email address with comma separated.', 'email-newsletter'); ?></li>
+	<li><?php _e('Enter maximum 25 email address at one time.', 'email-newsletter'); ?></li>
+	<li><?php _e('Comma not allowed at the end of the string.', 'email-newsletter'); ?></li>
 </ol>
-<h3>Wrong format</h3>
+<h3><?php _e('Wrong format', 'email-newsletter'); ?></h3>
 <ol>
-	<li>admin@gmail.com,admin1@gmail.com, &nbsp;&nbsp;&nbsp;&nbsp;(Comma at the end.)</li>
-	<li>admin@gmail.com,,admin1@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;(Two comma.)</li>
+	<li>admin@gmail.com,admin1@gmail.com, &nbsp;&nbsp;&nbsp;&nbsp;<?php _e('(Comma at the end)', 'email-newsletter'); ?></li>
+	<li>admin@gmail.com,,admin1@gmail.com &nbsp;&nbsp;&nbsp;&nbsp;<?php _e('(Two comma)', 'email-newsletter'); ?></li>
 </ol>
-<h3>Correct format</h3>
+<h3><?php _e('Correct format', 'email-newsletter'); ?></h3>
 <ol>
 	<li>admin@gmail.com,admin1@gmail.com</li>
 </ol>

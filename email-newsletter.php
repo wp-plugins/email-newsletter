@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in. also we have email subscriber option.
 Author: Gopi.R
-Version: 15.0
+Version: 16.0
 Author http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -49,7 +49,7 @@ function eemail_install()
 	
 	$admin_email = get_option('admin_email');
 	
-	add_option('eemail_title', "Email newsletter");
+	add_option('eemail_title', "Email Newsletter");
 	add_option('eemail_bcc', "0");
 	add_option('eemail_widget_cap', "Sign up for our email newsletters");
 	add_option('eemail_widget_txt_cap', "Enter email");
@@ -324,7 +324,7 @@ function eemail_send_mail($recipients = array(), $eemail_id = 0, $source = "")
 				}
 				else
 				{
-					$eemail_errors[] = __($emailaddress, WP_eemail_UNIQUE_NAME);
+					$eemail_errors[] = __($emailaddress, 'email-newsletter');
 					$eemail_error_found = TRUE;
 				}
 			}
@@ -336,7 +336,7 @@ function eemail_send_mail($recipients = array(), $eemail_id = 0, $source = "")
 
 			if ( !eemail_valid_email($emailaddress) ) 
 			{ 
-				$eemail_errors[] = __($emailaddress, WP_eemail_UNIQUE_NAME);
+				$eemail_errors[] = __($emailaddress, 'email-newsletter');
 				$eemail_error_found = TRUE;
 			}
 			else
@@ -382,7 +382,9 @@ function eemail_send_mail($recipients = array(), $eemail_id = 0, $source = "")
 
 	if($num_sent > 0) 
 	{ 
-		echo "<div class='updated fade'><strong><p>Email has been sent successfully.</p></strong></div>";
+		?>
+		<?php _e('<div class="updated fade"><strong><p>Email has been sent successfully.</p></strong></div>', 'email-newsletter'); ?>
+		<?php
 	}
 
 	if ($eemail_error_found == TRUE && isset($eemail_errors[0]) == TRUE)
@@ -401,7 +403,7 @@ function eemail_send_mail($recipients = array(), $eemail_id = 0, $source = "")
 			$j = $j + 1;
 		}
 		?>
-		<div class="error fade"><p><strong>Some invalid email address found.</strong><br /><?php echo $eemail_value; ?></p></div>
+		<div class="error fade"><p><strong><?php _e('Some invalid email address found.', 'email-newsletter'); ?></strong><br /><?php echo $eemail_value; ?></p></div>
 		<?php
 	}
 	
@@ -472,7 +474,6 @@ function eemail_widget($args)
 		echo $after_widget;
 	}
 }
-
 add_shortcode( 'email-newsletter-plugin', 'eemail_form_shortcode' );
 
 function eemail_form_shortcode( $atts ) 
@@ -484,19 +485,19 @@ function eemail_form_shortcode( $atts )
 	
 function eemail_control() 
 {
-	echo "Email newsletter";
+	_e('Email Newsletter', 'email-newsletter');
 }
 
 function eemai_widget_init()
 {
 	if(function_exists('wp_register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget("Email newsletter", "Email newsletter", 'eemail_widget');
+		wp_register_sidebar_widget( __('Email Newsletter', 'email-newsletter'), __('Email Newsletter', 'email-newsletter'), 'eemail_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_widget_control("Email newsletter", array("Email newsletter", 'widgets'), 'eemail_control');
+		wp_register_widget_control( __('Email Newsletter', 'email-newsletter') , array( __('Email Newsletter', 'email-newsletter') , 'widgets'), 'eemail_control');
 	} 
 }
 
@@ -638,7 +639,6 @@ function ViewSubscriberResendEmail($did)
 		$sSql = $wpdb->prepare("UPDATE ".WP_eemail_TABLE_SUB." SET eemail_status_sub = 'PEN' WHERE eemail_id_sub = %d LIMIT 1",	array($to_dbid));
 		$wpdb->query($sSql);
 	}
-
 }
 
 function GetFromEmail() 
@@ -661,22 +661,28 @@ function GetFromEmail()
 function add_admin_menu_option() 
 {
 	add_menu_page( __( 'Email Newsletter', 'email-newsletter' ), __( 'Email Newsletter', 'email-newsletter' ), 'admin_dashboard', 'email-newsletter', 'eemail_admin_option' );
-	add_submenu_page('email-newsletter', 'General Information', 'General Information', 'administrator', 'general-information', 'add_admin_menu_email_general');
-	add_submenu_page('email-newsletter', 'Compose Mail', 'Compose Mail', 'administrator', 'compose-email', 'add_admin_menu_email_compose');
-	add_submenu_page('email-newsletter', 'Send Mail to a Registered User', 'Mail to Registered User', 'administrator', 'sendmail-registereduser', 'add_admin_menu_email_to_registered_user');
-	add_submenu_page('email-newsletter', 'Send Mail to Commenters', 'Mail to Commenter', 'administrator', 'sendmail-commenter', 'add_admin_menu_email_to_comment_posed_user');
-	add_submenu_page('email-newsletter', 'Send Mail to Subscribed Users', 'Mail to Subscriber', 'administrator', 'sendmail-subscriber', 'add_admin_menu_email_to_subscriber');
-	add_submenu_page('email-newsletter', 'Send Mail to Users who Contacted You', 'Mail to Contact Form User', 'administrator', 'sendmail-contactform', 'add_admin_menu_email_to_simple_contact_form');
-	add_submenu_page('email-newsletter', 'View subscribed user', 'View Subscriber', 'administrator', 'view-subscriber', 'add_admin_menu_view_subscriber');
-	add_submenu_page('email-newsletter', 'Widget setting', 'Setup Widget', 'administrator', 'widget-setting', 'add_admin_menu_widget_option');
-	add_submenu_page('email-newsletter', 'Email setting', 'Setup Email', 'administrator', 'email-setting', 'add_admin_menu_email_option');
-	add_submenu_page('email-newsletter', 'Unsubscribe link option', 'Setup Unsubscribe', 'administrator', 'unsubscribe-setting', 'add_unsubscribe_option');
-	add_submenu_page('email-newsletter', 'Opt In Setting', 'Opt In Setting', 'administrator', 'opt-in', 'add_admin_menu_opt_in');
-	add_submenu_page('email-newsletter', 'Export CSV', 'Export Users to CSV', 'administrator', 'export-subscriber', 'add_admin_menu_export_csv');
-	add_submenu_page('email-newsletter', 'Import emails', 'Import Mails', 'administrator', 'import-subscriber', 'add_admin_menu_import_emails');
-	add_submenu_page('email-newsletter', 'Send Test Mail', 'Send Test Mail', 'administrator', 'test-email', 'add_admin_menu_email_testemail');
+	add_submenu_page('email-newsletter', 'General Information', __( 'General Information', 'email-newsletter' ), 'administrator', 'general-information', 'add_admin_menu_email_general');
+	add_submenu_page('email-newsletter', 'Compose Mail', __( 'Compose Mail', 'email-newsletter' ), 'administrator', 'compose-email', 'add_admin_menu_email_compose');
+	add_submenu_page('email-newsletter', 'Send Mail to a Registered User', __( 'Mail to Registered User', 'email-newsletter' ), 'administrator', 'sendmail-registereduser', 'add_admin_menu_email_to_registered_user');
+	add_submenu_page('email-newsletter', 'Send Mail to Commenters', __( 'Mail to Commenter', 'email-newsletter' ), 'administrator', 'sendmail-commenter', 'add_admin_menu_email_to_comment_posed_user');
+	add_submenu_page('email-newsletter', 'Send Mail to Subscribed Users', __( 'Mail to Subscriber', 'email-newsletter' ), 'administrator', 'sendmail-subscriber', 'add_admin_menu_email_to_subscriber');
+	add_submenu_page('email-newsletter', 'Send Mail to Users who Contacted You', __( 'Mail to Contact Form User', 'email-newsletter' ), 'administrator', 'sendmail-contactform', 'add_admin_menu_email_to_simple_contact_form');
+	add_submenu_page('email-newsletter', 'View subscribed user', __( 'View Subscriber', 'email-newsletter' ), 'administrator', 'view-subscriber', 'add_admin_menu_view_subscriber');
+	add_submenu_page('email-newsletter', 'Widget setting', __( 'Setup Widget', 'email-newsletter' ), 'administrator', 'widget-setting', 'add_admin_menu_widget_option');
+	add_submenu_page('email-newsletter', 'Email setting', __( 'Setup Email', 'email-newsletter' ), 'administrator', 'email-setting', 'add_admin_menu_email_option');
+	add_submenu_page('email-newsletter', 'Unsubscribe link option', __( 'Setup Unsubscribe', 'email-newsletter' ), 'administrator', 'unsubscribe-setting', 'add_unsubscribe_option');
+	add_submenu_page('email-newsletter', 'Opt In Setting', __( 'Opt In Setting', 'email-newsletter' ), 'administrator', 'opt-in', 'add_admin_menu_opt_in');
+	add_submenu_page('email-newsletter', 'Export CSV', __( 'Export Users to CSV', 'email-newsletter' ), 'administrator', 'export-subscriber', 'add_admin_menu_export_csv');
+	add_submenu_page('email-newsletter', 'Import emails', __( 'Import Mails', 'email-newsletter' ), 'administrator', 'import-subscriber', 'add_admin_menu_import_emails');
+	add_submenu_page('email-newsletter', 'Send Test Mail', __( 'Send Test Mail', 'email-newsletter' ), 'administrator', 'test-email', 'add_admin_menu_email_testemail');
 }
 
+function eemail_textdomain() 
+{
+	  load_plugin_textdomain( 'email-newsletter' , false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'eemail_textdomain');
 add_action('admin_menu', 'add_admin_menu_option');
 register_activation_hook(__FILE__, 'eemail_install');
 register_deactivation_hook(__FILE__, 'eemail_deactivation');
