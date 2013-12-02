@@ -89,7 +89,7 @@ Double Opt In means subscribers need to confirm their email address by an activa
 = Translators =
 
 * English (en_EN) - [Gopi Ramasamy](http://www.gopiplus.com/)
-* German (en_EN) - [Stefan Lechner]
+* German (de_DE) - [Stefan Lechner]
 * Tamil (ta) - [Gopi Ramasamy](http://www.gopiplus.com/)
 
 == Installation ==
