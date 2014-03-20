@@ -1,5 +1,5 @@
 === Email newsletter ===
-Contributors: www.gopiplus.com, gopiplus, dabelon
+Contributors: dabelon
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
