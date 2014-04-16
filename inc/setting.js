@@ -34,10 +34,24 @@ function _subscriberdealdelete(id)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.form_subscriber.action="admin.php?page=add_admin_menu_view_subscriber&AC=DEL&DID="+id;
+		var searchquery = document.form_subscriber.searchquery.value;
+		document.form_subscriber.action="admin.php?page=add_admin_menu_view_subscriber&AC=DEL&DID=" + id + "&Search=" + searchquery;
 		document.form_subscriber.submit();
 	}
 }	
+
+function _subscribermultipledelete()
+{
+	if(confirm("Do you want to delete the selected record(s)?"))
+	{
+		if(confirm("Are you sure you want to delete?"))
+		{
+			var searchquery = document.form_subscriber.searchquery.value;
+			document.form_subscriber.action="admin.php?page=add_admin_menu_view_subscriber&Search=" + searchquery;
+			document.form_subscriber.submit();
+		}
+	}
+}
 
 function send_email_submit()
 {
@@ -53,6 +67,55 @@ function _eemail_redirect()
 	window.location = "admin.php?page=add_admin_menu_email_compose";
 }
 
+function eemail_import()
+{
+	if(document.form_importemails.importemails.value=="")
+	{
+		alert("Please enter the email address.")
+		document.form_importemails.importemails.focus();
+		return false;
+	}
+	
+	entry = document.form_importemails.importemails.value;
+	var last = entry.charAt(entry.length-1); 
+	if (last == ',') 
+	{
+		alert("Comma not allowed at the end."); 
+		document.form_importemails.importemails.focus();
+		return false;
+	}
+	
+	var tarr = entry.split(',');
+	var str = '';
+	var j = 1;
+	for (var i=0; i<tarr.length; i++) 
+	{
+		if (tarr[i] == '') 
+		{ 
+			str += 'Empty value on the position '+j+'\n'; 
+			j = j+1;
+		} 
+		else
+		{
+			j = j+1;
+		}
+	}
+	
+	if (str != '') 
+	{ 
+		alert(str); 
+		document.form_importemails.importemails.focus();
+		return false;
+	}
+	
+	if(j > 25)
+	{
+		alert("Maximum 25 emails only allowed at one time."); 
+		document.form_importemails.importemails.focus();
+		return false;
+	}
+	
+}
 
 function SetAllCheckBoxes(FormName, FieldName, CheckValue)
 {
@@ -69,4 +132,15 @@ function SetAllCheckBoxes(FormName, FieldName, CheckValue)
 		// set the check value for all check boxes
 		for(var i = 0; i < countCheckBoxes; i++)
 			objCheckBoxes[i].checked = CheckValue;
+}
+
+
+function exportcsv(url, option)
+{
+	if(confirm("Do you want to export the emails?"))
+	{
+		//document.frm_emailnewsletter.action="admin.php?page=add_admin_menu_export_csv&option="+option;
+		document.frm_emailnewsletter.action= url+"?option="+option;
+		document.frm_emailnewsletter.submit();
+	}
 }
