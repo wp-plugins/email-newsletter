@@ -21,7 +21,7 @@ if($app_id){
       <a class="button add-new-h2" style="background-color:#36812E;color:white;" href="widgets.php">Place Widget Now</a>
       <p>Tips</p>
       <ul>
-      <li>-Already have the widget in place? Manage your ReadyGrpah account <a href="http://readygraph.com/application/insights/"> here</a></li>
+      <li>-Already have the widget in place? Manage your ReadyGraph account <a href="http://readygraph.com/application/insights/"> here</a></li>
       <li>-Need help? Email <a  href="mailto:nick@readygraph.com">nick@readygraph.com</a> or click <a href="http://readygraph.com">here</a> </li>
       </ul>
       
