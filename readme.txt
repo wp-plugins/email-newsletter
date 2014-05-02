@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 17.0
+Stable tag: 18.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -338,6 +338,10 @@ Plugin *.po file (email-newsletter.po) available in the languages folder.
 
 This plugin has been updated to include enhanced functionality through Readygraph features.
 
+= 18.0 =
+
+bug fix.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -444,3 +448,7 @@ Plugin *.po file (email-newsletter.po) available in the languages folder.
 = 17.0 =
 
 This plugin has been updated to include enhanced functionality through Readygraph features.
+
+= 18.0 =
+
+Bug Fix.
