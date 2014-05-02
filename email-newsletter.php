@@ -2,10 +2,10 @@
 /*
 Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-Description: Sometimes you want an easy way to e-mail all the people who registered, commented on the website, now it's as easy as installing this plug-in. also we have email subscriber option.
+Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R
-Version: 16.0
-Author http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+Version: 17.0
+Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -181,11 +181,9 @@ function eemail_deactivation()
 }
 
 function eemail_has_app(){
-    return false;
     global $wpdb;
     $cSql = "select * from ".WP_eemail_TABLE_APP." where 1=1 ";
     $data = $wpdb->get_results($cSql);
-      //echo count($data)
 
     if(count($data) > 0){
         return true;
@@ -710,9 +708,7 @@ function GetFromEmail()
 function add_admin_menu_option() 
 {
     add_menu_page( __( 'Email Newsletter', 'email-newsletter' ), __( 'Email Newsletter', 'email-newsletter' ), 'admin_dashboard', 'email-newsletter', 'eemail_admin_option' );
-    if(!eemail_has_app()){
-       add_submenu_page('email-newsletter', 'Readygraph App', __( 'Readygraph App', 'email-newsletter' ), 'administrator', 'register-app', 'add_app_register_page');
-    }
+    add_submenu_page('email-newsletter', 'Readygraph App', __( 'Readygraph App', 'email-newsletter' ), 'administrator', 'register-app', 'add_app_register_page');
     add_submenu_page('email-newsletter', 'General Information', __( 'General Information', 'email-newsletter' ), 'administrator', 'general-information', 'add_admin_menu_email_general');
     add_submenu_page('email-newsletter', 'Compose Mail', __( 'Compose Mail', 'email-newsletter' ), 'administrator', 'compose-email', 'add_admin_menu_email_compose');
     add_submenu_page('email-newsletter', 'Send Mail to a Registered User', __( 'Mail to Registered User', 'email-newsletter' ), 'administrator', 'sendmail-registereduser', 'add_admin_menu_email_to_registered_user');
