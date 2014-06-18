@@ -1,12 +1,12 @@
-=== Email newsletter ===
-Contributors: dabelon, wenzhixue, gopiplus
+﻿=== Email newsletter ===
+Contributors: dabelon, wenzhixue, tanaylakhani, gopiplus
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter
 Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 18.0
+Stable tag: 19.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -340,7 +340,11 @@ This plugin has been updated to include enhanced functionality through Readygrap
 
 = 18.0 =
 
-Bug Fix.
+bug fix.
+
+= 19.0 =
+
+Integrated Readygraph plugin. All the readygraph features are being handled by the separate plugin. 
 
 == Upgrade Notice ==
 
@@ -452,3 +456,7 @@ This plugin has been updated to include enhanced functionality through Readygrap
 = 18.0 =
 
 Bug Fix.
+
+= 19.0 =
+
+Integrated Readygraph plugin. All the readygraph features are being handled by the separate plugin. 

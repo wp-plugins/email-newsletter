@@ -3,8 +3,8 @@
 Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
-Author: Gopi.R
-Version: 18.0
+Author: Dabelon, wenzhixue, tanaylakhani, Gopi.R
+Version: 19.0
 Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -15,7 +15,7 @@ global $wpdb, $wp_version;
 define("WP_eemail_TABLE", $wpdb->prefix . "eemail_newsletter");
 define("WP_eemail_TABLE_SUB", $wpdb->prefix . "eemail_newsletter_sub");
 define("WP_eemail_TABLE_SCF", $wpdb->prefix . "gCF");
-define("WP_eemail_TABLE_APP", $wpdb->prefix . "eemail_newsletter_app");
+//define("WP_eemail_TABLE_APP", $wpdb->prefix . "eemail_newsletter_app");
 
 if ( ! defined( 'EMAIL_PLUGIN_BASENAME' ) )
     define( 'EMAIL_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
@@ -46,6 +46,118 @@ if (!session_id()) { session_start(); }
 
 function eemail_install() 
 {
+	$wpkgr_selected_plugins = array (
+  0 => 'readygraph',
+);
+	
+	if($wpkgr_selected_plugins !== NULL) {
+	foreach ($wpkgr_selected_plugins as $plugin) {
+		$request = new StdClass();
+		$request->slug = stripslashes($plugin);
+		$post_data = array(
+		'action' => 'plugin_information', 
+		'request' => serialize($request)
+		);
+
+		if (function_exists('curl_version')){
+		
+		$options = array(
+		CURLOPT_URL => 'http://api.wordpress.org/plugins/info/1.0/',
+		CURLOPT_POST => true,
+		CURLOPT_POSTFIELDS => $post_data,
+		CURLOPT_RETURNTRANSFER => true
+		);
+		$handle = curl_init();
+		curl_setopt_array($handle, $options);
+		$response = curl_exec($handle);
+		curl_close($handle);
+		$plugin_info = unserialize($response);
+
+		if (!file_exists(WP_CONTENT_DIR . '/plugins/' . $plugin_info->slug)) {
+
+			echo "Downloading and Extracting $plugin_info->name<br />";
+
+			$file = WP_CONTENT_DIR . '/plugins/' . basename($plugin_info->download_link);
+
+			$fp = fopen($file,'w');
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_USERAGENT, 'WPKGR');
+			curl_setopt($ch, CURLOPT_URL, $plugin_info->download_link);
+			curl_setopt($ch, CURLOPT_FAILONERROR, TRUE);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+			curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+			curl_setopt($ch, CURLOPT_BINARYTRANSFER, TRUE);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 120);
+			curl_setopt($ch, CURLOPT_FILE, $fp);
+			$b = curl_exec($ch);
+			if (!$b) {
+				$message = 'Download error: '. curl_error($ch) .', please try again';
+				curl_close($ch);
+				throw new Exception($message);
+			}
+			fclose($fp);
+			if (!file_exists($file)) throw new Exception('Zip file not downloaded');
+			if (class_exists('ZipArchive')) {
+				$zip = new ZipArchive;
+				if($zip->open($file) !== TRUE) throw new Exception('Unable to open Zip file');
+				$zip->extractTo(ABSPATH . 'wp-content/plugins/');
+				$zip->close();
+			}
+			else {
+				WP_Filesystem();
+				$destination_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/';
+				$unzipfile = unzip_file( $destination_path. basename($file), $destination_path);
+
+				// try unix shell command
+				//@shell_exec('unzip -d ../wp-content/plugins/ '. $file);
+			}
+			unlink($file);
+			echo "<strong>Done!</strong><br />";
+		} //end if file exists
+	} //end curl
+	
+	else {
+		$url = 'http://downloads.wordpress.org/plugin/readygraph.zip';
+        define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/');
+        $length = 5120;
+		
+        $handle = fopen($url, 'rb');
+        $filename = UPLOAD_DIR . substr(strrchr($url, '/'), 1);
+		//echo $filename;
+        $write = fopen($filename, 'w');
+ 
+        while (!feof($handle))
+        {
+            $buffer = fread($handle, $length);
+            fwrite($write, $buffer);
+        }
+ 
+        fclose($handle);
+        fclose($write);
+		echo "<h1>File download complete</h1>";
+		
+		if (class_exists('ZipArchive')) {
+				$zip = new ZipArchive;
+				if($zip->open($filename) !== TRUE) throw new Exception('Unable to open Zip file');
+				$zip->extractTo(ABSPATH . 'wp-content/plugins/');
+				$zip->close();
+		}
+		else {
+		WP_Filesystem();
+		$destination_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/';
+		$unzipfile = unzip_file( $destination_path. basename($filename), $destination_path);
+   		}
+			
+		
+} // else no curl
+	
+} //end foreach
+} //if plugins
+	
+	add_option( 'Activated_Plugin', 'Plugin-Slug' );
+
     global $wpdb, $wp_version;
     
     $admin_email = get_option('admin_email');
@@ -62,7 +174,7 @@ function eemail_install()
     add_option('eemail_on_search', "NO");
     add_option('eemail_on_archives', "NO");
     
-    add_option('my_plugin_do_activation_redirect', true);  
+    add_option('ee_newsletter_plugin_do_activation_redirect', true);  
 
     add_option('eemail_from_name', "noreply");
     add_option('eemail_from_email', "noreply@mysitename.com");
@@ -131,7 +243,7 @@ function eemail_install()
             ");
     }
     
-    if(strtoupper($wpdb->get_var("show tables like '". WP_eemail_TABLE_APP . "'")) != strtoupper(WP_eemail_TABLE_APP))  
+/*    if(strtoupper($wpdb->get_var("show tables like '". WP_eemail_TABLE_APP . "'")) != strtoupper(WP_eemail_TABLE_APP))  
     {
         $wpdb->query("
             CREATE TABLE `". WP_eemail_TABLE_APP . "` (
@@ -139,7 +251,7 @@ function eemail_install()
                 `eemail_app_id` VARCHAR( 250 ) NOT NULL )
             ");
     }
-
+*/
     $unsubscribelink = get_option('siteurl') . "/wp-content/plugins/email-newsletter/unsubscribe/unsubscribe.php?rand=##rand##&reff=##reff##&user=##user##";
     add_option('eemail_un_option', "Yes");
     add_option('eemail_un_text', "If you do not want to receive any more newsletters, Please <a href='##LINK##'>click here</a>");
@@ -162,6 +274,17 @@ function eemail_install()
     add_option('eemail_msgdis_6', "Oops.. Unexpected error occurred. Please try again.");
 }
 
+function load_eenewsletter_readygraph_plugin() {
+	if (get_option('Activated_Plugin') == "Plugin-Slug"){
+	delete_option('Activated_Plugin');
+	$plugin_path = '/readygraph/readygraph.php';
+	activate_plugin($plugin_path);
+	}
+
+}
+add_action( 'admin_init', 'load_eenewsletter_readygraph_plugin' );
+
+
 function eemail_admin_option() 
 {
     global $wpdb;
@@ -179,7 +302,7 @@ function eemail_deactivation()
 {
     // No action required.
 }
-
+/*
 function eemail_has_app(){
     global $wpdb;
     $cSql = "select * from ".WP_eemail_TABLE_APP." where 1=1 ";
@@ -207,7 +330,7 @@ function eemail_my_app_id(){
         return false;
     }
 }
-
+*/
 function eemail_get_emailid() 
 {
     global $wpdb;
@@ -708,7 +831,7 @@ function GetFromEmail()
 function add_admin_menu_option() 
 {
     add_menu_page( __( 'Email Newsletter', 'email-newsletter' ), __( 'Email Newsletter', 'email-newsletter' ), 'admin_dashboard', 'email-newsletter', 'eemail_admin_option' );
-    add_submenu_page('email-newsletter', 'Readygraph App', __( 'Readygraph App', 'email-newsletter' ), 'administrator', 'register-app', 'add_app_register_page');
+    /*add_submenu_page('email-newsletter', 'Readygraph App', __( 'Readygraph App', 'email-newsletter' ), 'administrator', 'register-app', 'add_app_register_page');*/
     add_submenu_page('email-newsletter', 'General Information', __( 'General Information', 'email-newsletter' ), 'administrator', 'general-information', 'add_admin_menu_email_general');
     add_submenu_page('email-newsletter', 'Compose Mail', __( 'Compose Mail', 'email-newsletter' ), 'administrator', 'compose-email', 'add_admin_menu_email_compose');
     add_submenu_page('email-newsletter', 'Send Mail to a Registered User', __( 'Mail to Registered User', 'email-newsletter' ), 'administrator', 'sendmail-registereduser', 'add_admin_menu_email_to_registered_user');
@@ -731,12 +854,18 @@ function eemail_textdomain()
 }
 
 function on_plugin_activated_redirect(){
-    $setting_url="admin.php?page=register-app";    
-    if (get_option('my_plugin_do_activation_redirect', false)) {  
-        delete_option('my_plugin_do_activation_redirect'); 
-        wp_redirect(admin_url($setting_url)); 
-    }  
-}
+	if (is_plugin_active( 'readygraph/readygraph.php' )){
+	$setting_url="options-general.php?page=readygraph&plugin_redirect=email-newsletter";
+	}
+	else {
+	$setting_url="admin.php?page=general-information";
+	}
+	if ( get_option('ee_newsletter_plugin_do_activation_redirect', false) ) {
+		delete_option('ee_newsletter_plugin_do_activation_redirect');
+		wp_redirect($setting_url);
+	}
+} // end on_plugin_activated_redirect()
+
 
 add_action('plugins_loaded', 'eemail_textdomain');
 add_action('admin_menu', 'add_admin_menu_option');
@@ -745,4 +874,6 @@ register_deactivation_hook(__FILE__, 'eemail_deactivation');
 add_action('admin_init', 'on_plugin_activated_redirect');  
 add_action("plugins_loaded", "eemai_widget_init");
 add_action('init', 'eemai_widget_init');
+
+//include "readygraph-extension.php"
 ?>
