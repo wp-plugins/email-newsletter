@@ -124,7 +124,7 @@ function eemail_submitresult()
 				}
 				else
 				{
-					document.getElementById("eemail_msg").innerHTML = http_req.responseText;
+					document.getElementById("eemail_msg").innerHTML = "Please try after some time.";
 					document.getElementById("eemail_txt_email").value="";
 				}
 			} 

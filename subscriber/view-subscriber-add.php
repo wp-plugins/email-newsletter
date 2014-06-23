@@ -30,38 +30,7 @@ if (isset($_POST['eemail_form_submit']) && $_POST['eemail_form_submit'] == 'yes'
 		$ArrayEmail = explode(',', $form['importemails']);
 		$Inserted = 0;
 		$Duplicate = 0;
-		$CurrentDate = date('Y-m-d G:i:s');
-		$readygraph_api = get_option('readygraph_application_id');
-		if ($readygraph_api && strlen($readygraph_api) > 0 && is_plugin_active( 'readygraph/readygraph.php' ))
-		$has_app = TRUE;
-		else{
-		$has_app = FALSE;
-		}
-		if($has_app){
-		echo 'number of emails: '. count($ArrayEmail);
-		for ($i = 0; $i < count($ArrayEmail); $i++)
-		{
-			$rg_url = 'https://readygraph.com/api/v1/wordpress-enduser/';
-			$postdata = http_build_query(
-			array(
-				'email' => $ArrayEmail[$i],
-				'app_id' => $readygraph_api
-				)
-			);
-
-			$opts = array('http' =>
-			array(
-				'method'  => 'POST',
-				'header'  => 'Content-type: application/x-www-form-urlencoded',
-				'content' => $postdata
-				)
-			);
-					//$context  = ;
-			file_get_contents($rg_url,false, stream_context_create($opts));
-		} // end for
-		} //end if
-			
-
+		$CurrentDate = date('Y-m-d G:i:s'); 
 		for ($i = 0; $i < count($ArrayEmail); $i++)
 		{
 			$cSql = "select * from ".WP_eemail_TABLE_SUB." where eemail_email_sub='" . trim($ArrayEmail[$i]). "'";

@@ -1,4 +1,4 @@
-﻿=== Email newsletter ===
+=== Email newsletter ===
 Contributors: dabelon, wenzhixue, tanaylakhani, gopiplus
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter
 Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
@@ -6,15 +6,24 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 19.0
+Stable tag: 20.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
-This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers.
+This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. Automate user growth through ReadyGraph integration.
 
 == Description ==
 
 Email Newsletter plugin has options to send HTML emails/newsletters to registered users, comment authors, subscribers and contact form users.  When a visitor registers, comments, subscribes or uses the Simple Contact Form plugin, their information is stored in a database.  Email Newsletter plugin users can view their user base, and email users.  This plugin also sends automated email updates to registered users based on activity relevant to that user. This plugin is great for those who seek an easy way to capture user information and send newsletters and automated email updates.
+
+This plugin has integrated [ReadyGraph](http://readygraph.com/), an optional set of features to automate the growth of your userbase.  It helps you achieve the three goals of any web marketer: maximize conversion of site visitors to register for your email list, maximize viral referrals for your site, and maximize return visits to your site.  To accomplish this, we have integrated a key set of growth features with this plugin:
+	- Intelligent signup popup with email or one-click Facebook login
+	- Full viral referral flow
+	- Automated end user re-engagement emails including welcome emails, weekly digest, friend joined alert and more (all email campaigns are optional and configurable)
+	- Enhanced email deliverabilty
+	- Cloud-based analytics and data storage
+	- Settings that allow you to turn on and off all ReadyGraph features.
+
 
 = Features =
 	
@@ -35,10 +44,6 @@ Email Newsletter plugin has options to send HTML emails/newsletters to registere
 = Usage =
 
 Once the plugin is installed, a new icon shaped like a sprocket will appear on the admin left sidebar.  Clicking this icon will open a drop-down menu with the following options.
-
-= ReadyGraph App =
-
-This menu item allows users to sign up for a free ReadyGraph account, or sync an existing free ReadyGraph account to Email Newsletter.  Once a ReadyGraph account is synced with Email Newsletter, this menu item is where the user manages their ReadyGraph accounts views email addresses, sends emails to their community members, and views insights on user growth.
 
 = General Information =
 
@@ -99,6 +104,31 @@ The menu item allows subscribers to be added manually.  Subscribers can be added
 = Send Test Mail =
 
 This menu item allows the plugin user to send test emails to up to 3 email addresses at once.  The plugin user simply selects a previously composed email from the `Select Email Subject` drop-down menu, types the recipient email addresses and click `Send Email`.
+
+= ReadyGraph App =
+
+ReadyGraph is a system that automates the growth of your site’s userbase. It is optimized to deliver audience growth and motivate users to consistently revisit your site.
+
+= Optimized Signup Form =
+
+ReadyGraph’s signup form with intelligent pop-up functionality and one-click login is designed to maximize signups to your email list.  You can configure when the popup appears so as to maximize the likelihood that the user is engaged enough to register for your list.
+
+= Viral Friend Invites =
+
+ReadyGraph adds a friend invite process to your site’s signup flow.  We then power the entire viral loop by sending email and Facebook invitations that encourage your visitors’ friends to signup for your site.
+
+= Automated Re-engagement Emails =
+
+ReadyGraph’s automated email system encourages visitors to return to your site.   Users receive optimized emails such as a welcome email, re-engagement email, regular digest with new content from your blog, and social emails.  All emails are configurable including the ability to turn on and off individual campaigns.  We handle all sending to maximize deliverability.
+
+= Analytics =
+
+Track daily-new subscribers, daily invites, total traffic, and other key metrics that quantify growth and user engagement.  ReadyGraph safely stores user data in the cloud so you can access data from anywhere.
+
+= Newsfeed =
+
+ReadyGraph’s newsfeed is an optional overlay on your site where your users can engage with others in your community and recommend your content or products to each other.  It is like having a social network that engages users embedded on your site. Users can leave comments, ‘like’ comments left by other subscribers and ‘follow’ other subscribers.  Subscribers will receive automated email updates based on these actions.
+
 
 = Translators =
 
@@ -342,10 +372,6 @@ This plugin has been updated to include enhanced functionality through Readygrap
 
 bug fix.
 
-= 19.0 =
-
-Integrated Readygraph plugin. All the readygraph features are being handled by the separate plugin. 
-
 == Upgrade Notice ==
 
 = 1.0 =
@@ -459,4 +485,8 @@ Bug Fix.
 
 = 19.0 =
 
-Integrated Readygraph plugin. All the readygraph features are being handled by the separate plugin. 
+Bug Fix.
+
+= 20.0 =
+
+Modified Readygraph application, with many configuration options and improved GUI.
