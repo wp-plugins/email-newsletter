@@ -58,6 +58,7 @@ EOF;
   }
   
   function on_plugin_activated_readygraph_redirect(){
+	update_option('readygraph_connect_notice','true');
     global $menu_slug;
     $setting_url="admin.php?page=$menu_slug";    
     if (get_option('my_plugin_do_activation_redirect', false)) {  
