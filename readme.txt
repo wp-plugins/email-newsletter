@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 20.1
+Stable tag: 20.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -387,7 +387,10 @@ Close button to dismiss Readygraph connect button on plugins page
 Add option to hide Powered by Readygraph from popup
 Readygraph TOS and Privacy Policy link is required as Readygraph stores the sign up email address on behalf of site owner, to remove these links you will need to disconnect the Readygraph from Readygraph Settings page.
 
+= 20.2 =
 
+Send blog updates to readygraph for weekly digest. You can turn it off from readygraph settings page.
+Fix Readygraph banner close permanently
 
 == Upgrade Notice ==
 
