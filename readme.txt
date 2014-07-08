@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 20.2
+Stable tag: 20.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -129,6 +129,7 @@ Track daily-new subscribers, daily invites, total traffic, and other key metrics
 
 ReadyGraph’s newsfeed is an optional overlay on your site where your users can engage with others in your community and recommend your content or products to each other.  It is like having a social network that engages users embedded on your site. Users can leave comments, ‘like’ comments left by other subscribers and ‘follow’ other subscribers.  Subscribers will receive automated email updates based on these actions.
 
+If you have questions or concerns contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
 
 = Translators =
 
@@ -249,6 +250,8 @@ In this file you will find the default text copied above, change the text and cl
 = 11. How to sign up for a ReadyGraph account and view my subscribers through readygraph.com? =
 
 To sign-up for a readygraph account, go to the `Readygraph App` menu item in the Email Newsletter plugin drop-down menu (by clicking the cog-shaped icon).  Enter your site URL, Name, Email and Password in the specified text fields.  Click `Continue` and follow to configure the widget.  Once a user has signed up, you can view your subscribers by selecting the `Readygraph App` menu item in the Email Newsletter plugin drop-down menu (by clicking the cog-shaped icon) and click `Account Management`.
+
+If you have questions or concerns contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
 
 == Screenshots ==
 
@@ -392,6 +395,12 @@ Readygraph TOS and Privacy Policy link is required as Readygraph stores the sign
 Send blog updates to readygraph for weekly digest. You can turn it off from readygraph settings page.
 Fix Readygraph banner close permanently
 
+= 20.3 =
+
+2-way synchronization with readygraph popup
+Performance update for faster javascript load.
+contact information for readygraph
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -510,3 +519,9 @@ Bug Fix.
 = 20.0 =
 
 Modified Readygraph application, with many configuration options and improved GUI.
+
+= 20.3 =
+
+2-way synchronization with readygraph popup
+Performance update for faster javascript load.
+contact information for readygraph

@@ -4,6 +4,15 @@
   $plugin_slug = basename(dirname(__FILE__));
   $menu_slug = 'readygraph-app';
   $main_plugin_title = 'Email Newsletter';
+	add_action( 'wp_ajax_nopriv_myajax-submit', 'myajax_submit' );
+	add_action( 'wp_ajax_myajax-submit', 'myajax_submit' );
+	
+function myajax_submit() {
+	$email = $_POST['email'];
+    $url = plugins_url() ."/email-newsletter/widget/eemail_subscribe.php";
+	$response = wp_remote_post($url, array( 'body' => array('txt_email_newsletter'=>$email)));
+    wp_die();
+}
   
   // Email Subscription Configuration
   //
