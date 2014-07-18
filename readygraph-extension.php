@@ -79,13 +79,13 @@ EOF;
   
   add_action('admin_menu', 'add_readygraph_admin_menu_option');
   add_action('admin_notices', 'add_readygraph_plugin_warning');
-  add_action('wp_head', 'readygraph_client_script_head');
+  add_action('wp_footer', 'readygraph_client_script_head');
   add_action('admin_init', 'on_plugin_activated_readygraph_redirect');
   	add_option('readygraph_connect_notice','true');
 function readygraph_cron_intervals( $schedules ) {
    $schedules['weekly'] = array( // Provide the programmatic name to be used in code
       'interval' => 604800, // Intervals are listed in seconds
-      'display' => __('Every week Seconds') // Easy to read display name
+      'display' => __('Every Week') // Easy to read display name
    );
    return $schedules; // Do not forget to give back the list of schedules!
 }
@@ -138,6 +138,58 @@ function rg_cron_exec() {
 	//endif;	
    
 }
+}
+
+function rg_gCF_popup_options_enqueue_scripts() {
+    if ( get_option('readygraph_popup_template') == 'default-template' ) {
+        wp_enqueue_style( 'default-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/default-popup.css' );
+    }
+    if ( get_option('readygraph_popup_template') == 'red-template' ) {
+        wp_enqueue_style( 'red-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/red-popup.css' );
+    }
+    if ( get_option('readygraph_popup_template') == 'blue-template' ) {
+        wp_enqueue_style( 'blue-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/blue-popup.css' );
+    }
+	if ( get_option('readygraph_popup_template') == 'black-template' ) {
+        wp_enqueue_style( 'black-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/black-popup.css' );
+    }
+	if ( get_option('readygraph_popup_template') == 'gray-template' ) {
+        wp_enqueue_style( 'gray-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/gray-popup.css' );
+    }
+	if ( get_option('readygraph_popup_template') == 'green-template' ) {
+        wp_enqueue_style( 'green-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/green-popup.css' );
+    }
+	if ( get_option('readygraph_popup_template') == 'yellow-template' ) {
+        wp_enqueue_style( 'yellow-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/yellow-popup.css' );
+    }
+    if ( get_option('readygraph_popup_template') == 'custom-template' ) {
+        /*echo '<style type="text/css">
+			.rgw-lightbox .rgw-content-frame .rgw-content {
+				background: '.get_option("readygraph_popup_template_background").' !important;
+			}
+
+			.rgw-style{
+				color: '.get_option("readygraph_popup_template_text").' !important;
+			}
+			.rgw-style .rgw-dialog-header .rgw-dialog-headline, .rgw-style .rgw-dialog-header .rgw-dialog-headline * {
+				color: '.get_option("readygraph_popup_template_text").' !important;
+			}
+			.rgw-notify .rgw-float-box {
+				background: '.get_option("readygraph_popup_template_background").' !important;
+			}
+			.rgw-notify .rgw-social-status:hover{
+				background: '.get_option("readygraph_popup_template_background").' !important;
+			}</style>';*/
+		wp_enqueue_style( 'custom-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/custom-popup.css' );
+    }	
+}
+add_action( 'admin_enqueue_scripts', 'rg_gCF_popup_options_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'rg_gCF_popup_options_enqueue_scripts' );
+add_action( 'admin_enqueue_scripts', 'mw_enqueue_color_picker' );
+function mw_enqueue_color_picker( $hook_suffix ) {
+    // first check that $hook_suffix is appropriate for your admin page
+    wp_enqueue_style( 'wp-color-picker' );
+    wp_enqueue_script( 'my-script-handle', plugins_url('/extension/readygraph/assets/js/my-script.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
 }
 
 ?>

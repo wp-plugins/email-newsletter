@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 20.3
+Stable tag: 20.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -187,6 +187,8 @@ The plugin can be further configured through the `Setup Widget`, `Setup Email`, 
 
 == Frequently Asked Questions ==
 
+Please scroll down for questions regarding **READYGRAPH**.
+
 = 1. How to compose email? =
 
 To Compose email, go to the `Compose Mail` menu item in the Email Newsletter plugin drop-down menu (by clicking the cog-shaped icon).  Enter a subject line and body text.  When finished, select `Yes` in the display status menu, and click `Insert Details`.  This saves to email so that it can be distributed.
@@ -251,7 +253,101 @@ In this file you will find the default text copied above, change the text and cl
 
 To sign-up for a readygraph account, go to the `Readygraph App` menu item in the Email Newsletter plugin drop-down menu (by clicking the cog-shaped icon).  Enter your site URL, Name, Email and Password in the specified text fields.  Click `Continue` and follow to configure the widget.  Once a user has signed up, you can view your subscribers by selecting the `Readygraph App` menu item in the Email Newsletter plugin drop-down menu (by clicking the cog-shaped icon) and click `Account Management`.
 
-If you have questions or concerns contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
+= ReadyGraph FAQ =
+
+= GENERAL QUESTIONS: =
+
+**What is ReadyGraph?**
+
+ReadyGraph is a tool that makes it easy for websites to grow and manage their user-base, by allowing/utilizing: **user sign-up**, through an optional notification tab and an intelligent pop-up, with one-click sign-up and social login options; **user friend invitations**, through the sign-up pop-up, or a sidebar button; **automated emails** (optional) that keep visitors coming back, such as welcome messages to greet new users, recent site updates/posts to keep them informed, gentle reminders for inactive users, and a weekly digest of new content; **mass emailing**, for fast communication to all your subscribers; **user-interaction**, through an optional comment-feed sidebar; **analytic tools**, to track new subscribers, daily visits, and other key metrics that quantify your website’s growth and user engagement.
+
+**How do I install ReadyGraph?**
+
+After installing this plug-in, you can activate the ReadyGraph features by connecting/signing-up for your ReadyGraph account.
+
+**How do I uninstall ReadyGraph?**
+
+You can deactivate the ReadyGraph features by navigating to the upper-right corner of the “ReadyGraph App” page, clicking the drop-down menu with your email address, and disconnecting your ReadyGraph account.
+
+**Can I delay the sign-up pop-up?**
+
+Yes, you can delay the pop-up for up to 20 minutes; however, the most effective delay is only a few seconds. That ensures that users are engaged, before showing the pop-up to them. 
+
+**How do I check my website’s stats?**
+
+You can check your website’s stats by clicking the “Insights” button at the upper-right corner of the “ReadyGraph App” page. There, you will find various metrics about your site growth.
+
+**Can I use both the pop-up and the form widget?**
+
+Yes, you can; they will not conflict with each other.
+
+**How do I contact someone for support, or to suggest a feature?**
+
+You can contact us at info@readygraph.com. We appreciate all feedback.
+
+**I’m having problems with the latest version of the plug-in; can I switch back to an older version?**
+
+Yes, just navigate to the “Developers” tab on the wordpress.org plug-in page, and select the version that works for you.
+
+= ACCOUNT QUESTIONS: =
+
+**How do I change my account email address?**
+
+Contact us as info@readygraph.com.
+
+**How do I turn off email notifications from ReadyGraph?**
+
+You can turn them off via the account settings page on ReadyGraph.com.
+
+**How do I disconnect ReadyGraph from my site?**
+
+You can disconnect ReadyGraph from your site by navigating to the upper-right corner of the “ReadyGraph App” page in this plug-in, and clicking the drop-down menu with your email address on it; there will be an option there to disconnect ReadyGraph from your site.
+
+= CUSTOMIZATION QUESTIONS: =
+
+**Can I customize the pop-up?**
+
+Yes, you can choose a template that matches your site design, from the various templates available.
+
+**Can I customize the friend-invite form?**
+
+You can customize the text on the friend invite form to something that suits your website.
+
+**Can I customize my emails?**
+
+Yes, on the right side of the “ReadyGraph App” page, you will find a link to a page where you can Configure/Enable/Disable the various automated emails that you can send via ReadyGraph.
+
+= QUESTIONS ABOUT YOUR SUBSCRIBERS: =
+
+**How do I view my subscribers?**
+
+Clicking the “Insights” button at the top of the “ReadyGraph App” page of this plug-in will take you to a page where you can view a list of your subscribers.
+
+**How do I mail my subscribers?**
+
+On the right side of the “ReadyGraph App” page, you will find a link to a page where you can send mass emails to your subscribers.
+
+**Can I import a list of existing subscribers?**
+
+This is a feature currently under development and is scheduled to be released in our next update.
+
+**Can I export a list of my subscribers?**
+
+This is a feature currently under development and is scheduled to be released in our next update. 
+
+**If I decide to stop using ReadyGraph, do I keep my subscribers?**
+
+Yes, contact us at info@readygraph.com for assistance.
+
+**Can I send automated emails/newsletters to my subscribers?**
+
+On the right side of the “ReadyGraph App” page, you will find a link to a page where you can Enable/Disable/Configure the various automated emails that you can send via ReadyGraph.
+
+**Is ReadyGraph necessary in order to use this plug-in?**
+
+No, it isn’t; you can use this plug-in without ReadyGraph features enabled, but you would be missing out on added growth opportunities.
+
+If you have questions or concerns, contact us anytime at [info@readygraph.com](mailto:info@readygraph.com)
 
 == Screenshots ==
 
@@ -525,3 +621,9 @@ Modified Readygraph application, with many configuration options and improved GU
 2-way synchronization with readygraph popup
 Performance update for faster javascript load.
 contact information for readygraph
+
+= 20.4 =
+
+Popup customization templates selection
+Performance update for faster javascript load.
+Updated signup form information
