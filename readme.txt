@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 20.4
+Stable tag: 20.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -497,6 +497,18 @@ Fix Readygraph banner close permanently
 Performance update for faster javascript load.
 contact information for readygraph
 
+= 20.4 =
+
+Popup customization templates selection
+Performance update for faster javascript load.
+Updated signup form information
+
+= 20.5 =
+
+Uninstall Readygraph Option
+Daily digest
+Real time post update to all the subscribers
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -627,3 +639,9 @@ contact information for readygraph
 Popup customization templates selection
 Performance update for faster javascript load.
 Updated signup form information
+
+= 20.5 =
+
+Uninstall Readygraph Option
+Daily digest
+Real time post update to all the subscribers

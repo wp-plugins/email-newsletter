@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R, tanaylakhani
-Version: 20.4
+Version: 20.5
 Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -709,6 +709,27 @@ register_deactivation_hook(__FILE__, 'eemail_deactivation');
 //add_action('admin_init', 'on_plugin_activated_redirect');  
 add_action("plugins_loaded", "eemai_widget_init");
 add_action('init', 'eemai_widget_init');
-
-include "readygraph-extension.php"
+if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php' )) {
+include "readygraph-extension.php";
+}
+else{
+}
+function ee_rrmdir($dir) {
+  if (is_dir($dir)) {
+    $objects = scandir($dir);
+    foreach ($objects as $object) {
+      if ($object != "." && $object != "..") {
+        if (filetype($dir."/".$object) == "dir") 
+           ee_rrmdir($dir."/".$object); 
+        else unlink   ($dir."/".$object);
+      }
+    }
+    reset($objects);
+    rmdir($dir);
+  }
+  $del_url = plugin_dir_path( __FILE__ );
+  unlink($del_url.'/readygraph-extension.php');
+ $setting_url="admin.php?page=general-information";
+  echo'<script> window.location="'.admin_url($setting_url).'"; </script> ';
+}
 ?>
