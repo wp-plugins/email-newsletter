@@ -63,7 +63,45 @@ EOF;
   }
   
   function add_readygraph_page() {
-    include_once('extension/readygraph/admin.php');
+    	global $wpdb;
+	$current_page = isset($_GET['ac']) ? $_GET['ac'] : '';
+	switch($current_page)
+	{
+		case 'signup-popup':
+			include('extension/readygraph/signup-popup.php');
+			break;
+		case 'invite-screen':
+			include('extension/readygraph/invite-screen.php');
+			break;
+		case 'social-feed':
+			include('extension/readygraph/social-feed.php');
+			break;
+		case 'site-profile':
+			include('extension/readygraph/site-profile.php');
+			break;
+		case 'customize-emails':
+			include('extension/readygraph/customize-emails.php');
+			break;
+		case 'deactivate-readygraph':
+			include('extension/readygraph/deactivate-readygraph.php');
+			break;
+		case 'welcome-email':
+			include('extension/readygraph/welcome-email.php');
+			break;
+		case 'retention-email':
+			include('extension/readygraph/retention-email.php');
+			break;
+		case 'invitation-email':
+			include('extension/readygraph/invitation-email.php');
+			break;	
+		case 'faq':
+			include('extension/readygraph/faq.php');
+			break;
+		default:
+			include('extension/readygraph/admin.php');
+			break;
+	}
+
   }
   
   function on_plugin_activated_readygraph_redirect(){
