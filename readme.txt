@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 20.6
+Stable tag: 20.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -657,3 +657,7 @@ Real time post update to all the subscribers
 GUI change
 Tutorial
 FAQ included
+
+= 20.7 =
+
+Bug Fix - Disable Popup
