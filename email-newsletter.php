@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R, tanaylakhani
-Version: 20.7
+Version: 20.8
 Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -613,6 +613,9 @@ function add_admin_menu_opt_in()
     global $wpdb;
     include('pages/optin-setting.php');
 }
+function add_readygraph_premium(){
+	include('extension/readygraph/go-premium.php');
+}
 
 function ViewSubscriberResendEmail($did) 
 {
@@ -687,6 +690,7 @@ function add_admin_menu_option()
     add_submenu_page('email-newsletter', 'Export CSV', __( 'Export Users to CSV', 'email-newsletter' ), 'administrator', 'export-subscriber', 'add_admin_menu_export_csv');
     add_submenu_page('email-newsletter', 'Import emails', __( 'Import Mails', 'email-newsletter' ), 'administrator', 'import-subscriber', 'add_admin_menu_import_emails');
     add_submenu_page('email-newsletter', 'Send Test Mail', __( 'Send Test Mail', 'email-newsletter' ), 'administrator', 'test-email', 'add_admin_menu_email_testemail');
+	add_submenu_page('email-newsletter', 'Go Premium', __( 'Go Premium', 'email-newsletter' ), 'administrator', 'readygraph-go-premium', 'add_readygraph_premium');
 }
 
 function eemail_textdomain() 
