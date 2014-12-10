@@ -51,7 +51,7 @@ function append_submenu_page( $parent_slug, $page_title, $menu_title, $capabilit
 	return $hookname;
 }
 
-function add_readygraph_plugin_warning() {
+function add_ee_readygraph_plugin_warning() {
   if (get_option('readygraph_access_token', '') != '') return;
 
   global $hook_suffix, $current_user, $menu_slug;

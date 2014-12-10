@@ -54,8 +54,9 @@ EOF;
 */  
   // RwadyGraph Engine Hooker
   //
+  if( file_exists(plugin_dir_path( __FILE__ ).'/extension/readygraph/extension.php')) {
   include_once('extension/readygraph/extension.php');
-    
+  }
   function add_readygraph_admin_menu_option() 
   {
     global $plugin_slug, $menu_slug;
@@ -116,7 +117,7 @@ EOF;
   remove_action('admin_init', 'on_plugin_activated_redirect');
   
   add_action('admin_menu', 'add_readygraph_admin_menu_option');
-  add_action('admin_notices', 'add_readygraph_plugin_warning');
+  add_action('admin_notices', 'add_ee_readygraph_plugin_warning');
   add_action('wp_footer', 'readygraph_client_script_head');
   add_action('admin_init', 'on_plugin_activated_readygraph_redirect');
   	add_option('readygraph_connect_notice','true');
@@ -264,4 +265,32 @@ function ee_post_updated_send_email( $post_id ) {
 }
 add_action( 'publish_post', 'ee_post_updated_send_email' );
 add_action( 'publish_page', 'ee_post_updated_send_email' );
+if(get_option('ee_wordpress_sync_users')){}
+else{
+add_action('plugins_loaded', 'rg_ee_get_version');
+}
+function rg_ee_get_version() {
+	if(get_option('ee_wordpress_sync_users') && get_option('ee_wordpress_sync_users') == "true")
+	{}
+	else {
+		if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
+        ee_wordpress_sync_users(get_option('readygraph_application_id'));
+		}
+    }
+}
+function ee_wordpress_sync_users( $app_id ){
+	global $wpdb;
+   	$query = "SELECT eemail_email_sub as email, eemail_date_sub as user_date FROM {$wpdb->prefix}2_eemail_newsletter_sub ";
+	$subscribe2_users = $wpdb->get_results($query);
+	$emails = "";
+	$dates = "";
+	foreach($subscribe2_users as $user) {	
+		$emails .= $user->email . ","; 
+		$dates .= $user->user_date . ",";
+	}
+	$url = 'https://readygraph.com/api/v1/wordpress-sync-enduser/';
+	$response = wp_remote_post($url, array( 'body' => array('app_id' => $app_id, 'email' => rtrim($emails, ", "), 'user_registered' => rtrim($dates, ", "))));
+	update_option('ee_wordpress_sync_users',"true");
+	remove_action('plugins_loaded', 'rg_ee_get_version');
+}
 ?>
