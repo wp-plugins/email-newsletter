@@ -280,7 +280,7 @@ function rg_ee_get_version() {
 }
 function ee_wordpress_sync_users( $app_id ){
 	global $wpdb;
-   	$query = "SELECT eemail_email_sub as email, eemail_date_sub as user_date FROM {$wpdb->prefix}2_eemail_newsletter_sub ";
+   	$query = "SELECT eemail_email_sub as email, eemail_date_sub as user_date FROM {$wpdb->prefix}eemail_newsletter_sub ";
 	$subscribe2_users = $wpdb->get_results($query);
 	$emails = "";
 	$dates = "";
