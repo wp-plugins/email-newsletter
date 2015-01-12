@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 20.9
+Stable tag: 21.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -549,6 +549,11 @@ Deactivation confirmation message
 
 Sync subscribers with readygraph if you are connected
 
+= 20.10 =
+
+ReadyGraph Bug Fixes
+ReadyGraph Banner on plugin pages
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -713,3 +718,8 @@ Deactivation confirmation message
 = 20.9 =
 
 Sync subscribers with readygraph if you are connected
+
+= 20.10 =
+
+ReadyGraph Bug Fixes
+ReadyGraph Banner on plugin pages

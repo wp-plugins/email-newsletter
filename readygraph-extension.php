@@ -263,8 +263,11 @@ function ee_post_updated_send_email( $post_id ) {
 	}
 
 }
-add_action( 'publish_post', 'ee_post_updated_send_email' );
-add_action( 'publish_page', 'ee_post_updated_send_email' );
+add_action('future_to_publish','ee_post_updated_send_email');
+add_action('new_to_publish','ee_post_updated_send_email');
+add_action('draft_to_publish','ee_post_updated_send_email');
+//add_action( 'publish_post', 'ee_post_updated_send_email' );
+//add_action( 'publish_page', 'ee_post_updated_send_email' );
 if(get_option('ee_wordpress_sync_users')){}
 else{
 add_action('plugins_loaded', 'rg_ee_get_version');
@@ -284,6 +287,9 @@ function ee_wordpress_sync_users( $app_id ){
 	$subscribe2_users = $wpdb->get_results($query);
 	$emails = "";
 	$dates = "";
+	$count = 0;
+	$count = mysql_num_rows($subscribe2_users);
+	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=wp_user_synced&app_id=$app_id&count=$count" );
 	foreach($subscribe2_users as $user) {	
 		$emails .= $user->email . ","; 
 		$dates .= $user->user_date . ",";

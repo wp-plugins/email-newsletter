@@ -48,6 +48,9 @@ if (isset($_POST['frm_eemail_display']) && $_POST['frm_eemail_display'] == 'yes'
 }
 ?>
 <div class="wrap">
+<?php wp_enqueue_style('ee_rg_admin_template', plugins_url() ."/email-newsletter/extension/readygraph/assets/css/upgrade.css");
+
+echo '<div class="rg_info rg_message"><img src="'.plugins_url() .'/email-newsletter/extension/readygraph/assets/Sign-Alert-icon.png" style="float: left;height: 50px;padding-right: 10px;"><a href="admin.php?page=readygraph-app"><button class="button-warning pure-button" style="float: right; margin-right: 15px;">Connect ReadyGraph</button></a><h3 style="color:white">Grow your site traffic faster: Activate Email Newsletter\'s User Growth Engine (ReadyGraph)</h3><p style="color: whitesmoke">Promotion to New Users | Viral Signup Form | Site Update emails | Import Existing Users</p></div>'; ?>
   <div id="icon-plugins" class="icon32"></div>
     <h2><?php _e(WP_eemail_TITLE, 'email-newsletter'); ?></h2>
 	<h3><?php _e('Compose email', 'email-newsletter'); ?>  <a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=compose-email&amp;ac=add"><?php _e('Add New', 'email-newsletter'); ?></a></h3>
