@@ -728,3 +728,8 @@ Sync subscribers with readygraph if you are connected
 
 ReadyGraph Bug Fixes
 ReadyGraph Banner on plugin pages
+
+= 20.11 =
+
+Readygraph premium plan selections
+Site profile for readygraph promotions
