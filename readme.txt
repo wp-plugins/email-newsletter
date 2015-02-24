@@ -14,6 +14,11 @@ This easy-to-use plugin provides a simple way for Wordpress users to email regis
 
 == Description ==
 
+Check official website for live demo http://plugins.readygraph.com/email-newsletter/
+* [Live demo](http://plugins.readygraph.com/email-newsletter/)
+* [More Description](http://plugins.readygraph.com/email-newsletter/)
+* [Suggestion/comments](http://plugins.readygraph.com/email-newsletter/)
+
 Email Newsletter plugin has options to send HTML emails/newsletters to registered users, comment authors, subscribers and contact form users.  When a visitor registers, comments, subscribes or uses the Simple Contact Form plugin, their information is stored in a database.  Email Newsletter plugin users can view their user base, and email users.  This plugin also sends automated email updates to registered users based on activity relevant to that user. This plugin is great for those who seek an easy way to capture user information and send newsletters and automated email updates.
 
 This plugin has integrated [ReadyGraph](http://readygraph.com/), an optional set of features to automate the growth of your userbase.  It helps you achieve the three goals of any web marketer: maximize conversion of site visitors to register for your email list, maximize viral referrals for your site, and maximize return visits to your site.  To accomplish this, we have integrated a key set of growth features with this plugin:
@@ -156,6 +161,8 @@ If you have questions or concerns contact us anytime at [info@readygraph.com](ma
 == Installation ==
 
 = Installation Instruction =
+
+Installation Instruction and Configuration can also be found at [Installation Instruction and Configuration](http://plugins.readygraph.com/email-newsletter/installation/)
 	
 = Method 1 =
 	
@@ -202,6 +209,8 @@ Locate the “Email Newsletter” widget, and click the `Add` button.  From the 
 The plugin can be further configured through the `Setup Widget`, `Setup Email`, `Setup Unsubscribe` and `Opt in Settings` menu items, described above.
 
 == Frequently Asked Questions ==
+
+For detailed FAQ and other support visit [http://plugins.readygraph.com/email-newsletter/faq/](http://plugins.readygraph.com/email-newsletter/faq/)
 
 Please scroll down for questions regarding **READYGRAPH**.
 
@@ -367,14 +376,14 @@ If you have questions or concerns, contact us anytime at [info@readygraph.com](m
 
 == Screenshots ==
 
-1. Admin Menu. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-2. Compose Mail. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-3. Compose Mail. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-4. Send Mail to Subscribed Users. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-5. Send Mail to a Registered User. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-6. Send Mail to Commenters. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+1. Admin Menu. http://plugins.readygraph.com/email-newsletter/screenshots/
+2. Compose Mail. http://plugins.readygraph.com/email-newsletter/screenshots/
+3. Compose Mail. http://plugins.readygraph.com/email-newsletter/screenshots/
+4. Send Mail to Subscribed Users. http://plugins.readygraph.com/email-newsletter/screenshots/
+5. Send Mail to a Registered User. http://plugins.readygraph.com/email-newsletter/screenshots/
+6. Send Mail to Commenters. http://plugins.readygraph.com/email-newsletter/screenshots/
 7. Export Users to CSV. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
-8. Import Mails. http://www.gopiplus.com/work/2010/09/25/email-newsletter/
+8. Import Mails. http://plugins.readygraph.com/email-newsletter/screenshots/
 
 == Changelog ==
 
