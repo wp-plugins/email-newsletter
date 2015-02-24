@@ -15,8 +15,11 @@ This easy-to-use plugin provides a simple way for Wordpress users to email regis
 == Description ==
 
 Check official website for live demo [http://plugins.readygraph.com/email-newsletter/](http://plugins.readygraph.com/email-newsletter/)
+
 * [Live demo](http://plugins.readygraph.com/email-newsletter/)
+
 * [More Description](http://plugins.readygraph.com/email-newsletter/)
+
 * [Suggestion/comments](http://plugins.readygraph.com/email-newsletter/)
 
 Email Newsletter plugin has options to send HTML emails/newsletters to registered users, comment authors, subscribers and contact form users.  When a visitor registers, comments, subscribes or uses the Simple Contact Form plugin, their information is stored in a database.  Email Newsletter plugin users can view their user base, and email users.  This plugin also sends automated email updates to registered users based on activity relevant to that user. This plugin is great for those who seek an easy way to capture user information and send newsletters and automated email updates.
