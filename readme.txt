@@ -1,4 +1,4 @@
-=== Email newsletter ===
+﻿=== Email newsletter ===
 Contributors: dabelon, wenzhixue, tanaylakhani, gopiplus
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter
 Author URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
@@ -14,7 +14,7 @@ This easy-to-use plugin provides a simple way for Wordpress users to email regis
 
 == Description ==
 
-Check official website for live demo http://plugins.readygraph.com/email-newsletter/
+Check official website for live demo [http://plugins.readygraph.com/email-newsletter/](http://plugins.readygraph.com/email-newsletter/)
 * [Live demo](http://plugins.readygraph.com/email-newsletter/)
 * [More Description](http://plugins.readygraph.com/email-newsletter/)
 * [Suggestion/comments](http://plugins.readygraph.com/email-newsletter/)
