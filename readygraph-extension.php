@@ -14,46 +14,7 @@ function myajax_submit() {
     wp_die();
 }
   
-  // Email Subscription Configuration
-  //
-/*  $url = emailnews_plugin_url('widget');
-  $app_id = get_option('readygraph_application_id', '');
-  $readygraph_email_subscribe = <<<EOF
-  function subscribe(email, first_name, last_name) {
-    function submitPostRequest(url, parameters) 
-    {
-      http_req = false;
-      if (window.XMLHttpRequest) 
-      {
-        http_req = new XMLHttpRequest();
-        if (http_req.overrideMimeType) http_req.overrideMimeType('text/html');
-      } 
-      else if (window.ActiveXObject) 
-      {
-        try { http_req = new ActiveXObject("Msxml2.XMLHTTP"); } 
-        catch (e) {
-          try { http_req = new ActiveXObject("Microsoft.XMLHTTP"); } 
-          catch (e) { }
-        }
-      }
-      if (!http_req) return;
-      http_req.onreadystatechange = eemail_submitresult;
-      http_req.open('POST', url, true);
-      http_req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      http_req.send(parameters);
-    }
-    
-    var rg_url = 'https://readygraph.com/api/v1/wordpress-enduser/';
-    var str = "email=" + encodeURI(email) + "&app_id=$app_id";
-		if ('$app_id') submitPostRequest(rg_url, str);
-    
-    str= "txt_email_newsletter="+ encodeURI(email) + "&action=" + encodeURI(Math.random());
-    submitPostRequest('$url/eemail_subscribe.php', str);
-  }
-EOF;
-*/  
-  // RwadyGraph Engine Hooker
-  //
+
   if( file_exists(plugin_dir_path( __FILE__ ).'/extension/readygraph/extension.php')) {
   include_once('extension/readygraph/extension.php');
   }
@@ -121,65 +82,7 @@ EOF;
   add_action('wp_footer', 'readygraph_client_script_head');
   add_action('admin_init', 'on_plugin_activated_readygraph_redirect');
   	add_option('readygraph_connect_notice','true');
-	/*
-function readygraph_cron_intervals( $schedules ) {
-   $schedules['weekly'] = array( // Provide the programmatic name to be used in code
-      'interval' => 604800, // Intervals are listed in seconds
-      'display' => __('Every Week') // Easy to read display name
-   );
-   return $schedules; // Do not forget to give back the list of schedules!
-}
 
-
-add_action( 'rg_cron_hook', 'rg_cron_exec' );
-$send_blog_updates = get_option('readygraph_send_blog_updates');
-if ($send_blog_updates == 'true'){
-if( !wp_next_scheduled( 'rg_cron_hook' && $send_blog_updates == 'true')) {
-   wp_schedule_event( time(), 'weekly', 'rg_cron_hook' );
-}
-}
-else
-{
-//do nothing
-}
-if ($send_blog_updates == 'false'){
-wp_clear_scheduled_hook( 'rg_cron_hook' );
-}
-function rg_cron_exec() {
-//	$send_blog_updates = get_option('readygraph_send_blog_updates');
-	$readygraph_email = get_option('readygraph_email', '');
-//	wp_mail($readygraph_email, 'Automatic email', 'Hello, this is an automatically scheduled email from WordPress.');
-	global $wpdb;
-   	$query = "SELECT ID, post_title FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_modified DESC LIMIT 5";
-	
-	global $wpdb;
-	$recentposts = $wpdb->get_results($query);
-	
-	echo "<h2> Recently Updated</h2>";
-	echo "<ul>";
-	$postdata = "";
-	$postdatalinks = "";
-	foreach($recentposts as $post) {
-		$postdata .= $post->post_title . ", "; 
-		$postdatalinks .= get_permalink($post->ID) . ", ";
-	$url = 'http://readygraph.com/api/v1/post.json/';
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => rtrim($postdata, ", "), 'message_link' => rtrim($postdatalinks, ", "),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
-
-	if ( is_wp_error( $response ) ) {
-	$error_message = $response->get_error_message();
-	//echo "Something went wrong: $error_message";
-	} 	else {
-	//echo 'Response:<pre>';
-	//print_r( $response );
-	//echo '</pre>';
-	}
-	echo "</ul>";
-
-	//endif;	
-   
-}
-}
-*/
 function rg_ee_popup_options_enqueue_scripts() {
     if ( get_option('readygraph_popup_template') == 'default-template' ) {
         wp_enqueue_style( 'default-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/default-popup.css' );
@@ -203,23 +106,7 @@ function rg_ee_popup_options_enqueue_scripts() {
         wp_enqueue_style( 'yellow-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/yellow-popup.css' );
     }
     if ( get_option('readygraph_popup_template') == 'custom-template' ) {
-        /*echo '<style type="text/css">
-			.rgw-lightbox .rgw-content-frame .rgw-content {
-				background: '.get_option("readygraph_popup_template_background").' !important;
-			}
 
-			.rgw-style{
-				color: '.get_option("readygraph_popup_template_text").' !important;
-			}
-			.rgw-style .rgw-dialog-header .rgw-dialog-headline, .rgw-style .rgw-dialog-header .rgw-dialog-headline * {
-				color: '.get_option("readygraph_popup_template_text").' !important;
-			}
-			.rgw-notify .rgw-float-box {
-				background: '.get_option("readygraph_popup_template_background").' !important;
-			}
-			.rgw-notify .rgw-social-status:hover{
-				background: '.get_option("readygraph_popup_template_background").' !important;
-			}</style>';*/
 		wp_enqueue_style( 'custom-template', plugin_dir_url( __FILE__ ) .'extension/readygraph/assets/css/custom-popup.css' );
     }	
 }
@@ -240,21 +127,21 @@ function ee_post_updated_send_email( $post_id ) {
 
 	$post_title = get_the_title( $post_id );
 	$post_url = get_permalink( $post_id );
+	$post_image = wp_get_attachment_url(get_post_thumbnail_id($post_id));
 	$post_content = get_post($post_id);
-	if (get_option('readygraph_send_real_time_post_updates')=='true'){
+	$post_excerpt = (isset($post_content->post_excerpt) && (!empty($post_content->post_excerpt))) ? $post_content->post_excerpt : wp_trim_words(strip_tags(strip_shortcodes($post_content->post_content)),500);
 	$url = 'http://readygraph.com/api/v1/post.json/';
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
+	if (get_option('readygraph_send_real_time_post_updates')=='true'){
+	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'is_realtime'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 	}
 	else {
-	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => wp_trim_words( $post_content->post_content, 100 ),'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
+	$response = wp_remote_post($url, array( 'body' => array('is_wordpress'=>1, 'message' => $post_title, 'message_link' => $post_url,'message_excerpt' => $post_excerpt,'client_key' => get_option('readygraph_application_id'), 'email' => get_option('readygraph_email'))));
 	}
 	if ( is_wp_error( $response ) ) {
 	$error_message = $response->get_error_message();
-	//echo "Something went wrong: $error_message";
+
 	} 	else {
-	//echo 'Response:<pre>';
-	//print_r( $response );
-	//echo '</pre>';
+
 	}
 	$app_id = get_option('readygraph_application_id');
 	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=post_created&app_id=$app_id" );
@@ -266,8 +153,7 @@ function ee_post_updated_send_email( $post_id ) {
 add_action('future_to_publish','ee_post_updated_send_email');
 add_action('new_to_publish','ee_post_updated_send_email');
 add_action('draft_to_publish','ee_post_updated_send_email');
-//add_action( 'publish_post', 'ee_post_updated_send_email' );
-//add_action( 'publish_page', 'ee_post_updated_send_email' );
+
 if(get_option('ee_wordpress_sync_users')){}
 else{
 add_action('plugins_loaded', 'rg_ee_get_version');
