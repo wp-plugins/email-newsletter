@@ -115,7 +115,6 @@ script.onload = function(e) {
 				},function(){});
 				<?php } ?>
 				}
-			}
 			readygraph.framework.authentication.getUserInfo(function(userInfo) {
 				if (userInfo.get('uid') != null) {
 					process(userInfo);
