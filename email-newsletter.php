@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R, tanaylakhani
-Version: 20.12
+Version: 20.13
 Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -714,9 +714,22 @@ register_deactivation_hook(__FILE__, 'eemail_deactivation');
 add_action("plugins_loaded", "eemai_widget_init");
 add_action('init', 'eemai_widget_init');
 if( file_exists(plugin_dir_path( __FILE__ ).'/readygraph-extension.php' )) {
+if (get_option('readygraph_deleted') && get_option('readygraph_deleted') == 'true'){}
+else{
 include "readygraph-extension.php";
 }
-else{
+if(get_option('readygraph_application_id') && strlen(get_option('readygraph_application_id')) > 0){
+register_deactivation_hook( __FILE__, 'ee_readygraph_plugin_deactivate' );
+}
+function ee_readygraph_plugin_deactivate(){
+	$app_id = get_option('readygraph_application_id');
+	update_option('readygraph_deleted', 'false');
+	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=simple_contact_form_plugin_uninstall&app_id=$app_id" );
+	ee_delete_rg_options();
+}
+}
+else {
+
 }
 function ee_rrmdir($dir) {
   if (is_dir($dir)) {
@@ -746,9 +759,20 @@ delete_option('readygraph_delay');
 delete_option('readygraph_enable_sidebar');
 delete_option('readygraph_auto_select_all');
 delete_option('readygraph_enable_notification');
+delete_option('readygraph_enable_popup');
 delete_option('readygraph_enable_branding');
 delete_option('readygraph_send_blog_updates');
 delete_option('readygraph_send_real_time_post_updates');
 delete_option('readygraph_popup_template');
+delete_option('readygraph_upgrade_notice');
+delete_option('readygraph_adsoptimal_secret');
+delete_option('readygraph_adsoptimal_id');
+delete_option('readygraph_connect_anonymous');
+delete_option('readygraph_connect_anonymous_app_secret');
+delete_option('readygraph_tutorial');
+delete_option('readygraph_site_url');
+delete_option('readygraph_enable_monetize');
+delete_option('readygraph_monetize_email');
+delete_option('readygraph_plan');
 }
 ?>

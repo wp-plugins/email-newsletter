@@ -6,11 +6,11 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 20.12
+Stable tag: 20.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
-This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. Automate user growth through ReadyGraph integration.
+A simple way for you to email registered users, commenters and subscribers. Automate user growth and revenue with ReadyGraph integration.
 
 == Description ==
 
@@ -305,6 +305,12 @@ After installing this plug-in, you can activate the ReadyGraph features by conne
 
 You can deactivate the ReadyGraph features by navigating to the upper-right corner of the “ReadyGraph App” page, clicking the drop-down menu with your email address, and disconnecting your ReadyGraph account.
 
+**How do I reinstall ReadyGraph after I had deleted?**
+
+1. Get the latest plugin update/reinstall the plugin.
+2. Deactivate the plugin
+3. Activate the plugin
+
 **Can I delay the sign-up pop-up?**
 
 Yes, you can delay the pop-up for up to 20 minutes; however, the most effective delay is only a few seconds. That ensures that users are engaged, before showing the pop-up to them. 
@@ -593,6 +599,13 @@ Code cleanup
 
 Added ReadyGraph Monetization Features
 
+= 20.13 =
+
+Bug Fix for readygraph and compatibility with other plugins
+New code structure for readygraph
+User can delete the readygraph to completely remove it.
+Subsequent upgrades wont load readygraph except a plugin is disabled and re-enabled.
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -781,3 +794,10 @@ Code cleanup
 = 20.12 =
 
 Added ReadyGraph Monetization Features
+
+= 20.13 =
+
+Bug Fix for readygraph and compatibility with other plugins
+New code structure for readygraph
+User can delete the readygraph to completely remove it.
+Subsequent upgrades wont load readygraph except a plugin is disabled and re-enabled.
