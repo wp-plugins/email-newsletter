@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R, tanaylakhani
-Version: 20.13
+Version: 20.13.1
 Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -724,7 +724,7 @@ register_deactivation_hook( __FILE__, 'ee_readygraph_plugin_deactivate' );
 function ee_readygraph_plugin_deactivate(){
 	$app_id = get_option('readygraph_application_id');
 	update_option('readygraph_deleted', 'false');
-	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=simple_contact_form_plugin_uninstall&app_id=$app_id" );
+	wp_remote_get( "http://readygraph.com/api/v1/tracking?event=email_newsletter_plugin_uninstall&app_id=$app_id" );
 	ee_delete_rg_options();
 }
 }
