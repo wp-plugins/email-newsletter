@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 20.13.2
+Stable tag: 20.13.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -614,6 +614,10 @@ Bug Fix for readygraph load
 
 Bug Fix for readygraph
 
+= 20.13.3 =
+
+Bug Fix for readygraph
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -815,5 +819,9 @@ Subsequent upgrades wont load readygraph except a plugin is disabled and re-enab
 Bug Fix for readygraph load
 
 = 20.13.2 =
+
+Bug Fix for readygraph
+
+= 20.13.3 =
 
 Bug Fix for readygraph
