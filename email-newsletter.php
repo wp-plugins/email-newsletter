@@ -4,7 +4,7 @@ Plugin Name: Email newsletter
 Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Description: This easy-to-use plugin provides a simple way for Wordpress users to email registered users, commenters and subscribers. To place widget click <a href="widgets.php">here</a>.
 Author: Gopi.R, tanaylakhani
-Version: 20.13.5
+Version: 20.13.6
 Author URI: http://www.gopiplus.com
 Donate link: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 License: GPLv2 or later
@@ -16,6 +16,21 @@ define("WP_eemail_TABLE", $wpdb->prefix . "eemail_newsletter");
 define("WP_eemail_TABLE_SUB", $wpdb->prefix . "eemail_newsletter_sub");
 define("WP_eemail_TABLE_SCF", $wpdb->prefix . "gCF");
 define("WP_eemail_TABLE_APP", $wpdb->prefix . "eemail_newsletter_app");
+
+//plugin version upgrades
+define( 'EE_VERSION', '20.13.6' );
+if (get_option('EE_VERSION') && strlen(get_option('EE_VERSION')) > 0){
+	if (get_option('EE_VERSION') !== EE_VERSION ) {
+		add_action('shutdown', 'ee_update');
+	}
+} else { 
+update_option('EE_VERSION', EE_VERSION);	
+}
+if (!function_exists('ee_update')) {
+	function ee_update() {
+		///plugin version check and upgrade code
+	}
+}
 
 if ( ! defined( 'EMAIL_PLUGIN_BASENAME' ) )
     define( 'EMAIL_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );

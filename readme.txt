@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 20.13.5
+Stable tag: 20.13.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -626,6 +626,12 @@ Bug Fix for readygraph
 
 Make monetization absolutely optional and opt-in
 Turn on monetization only after they register for ReadyGraph
+
+= 20.13.6 =
+
+Add versioning to the plugin
+bug fix
+RG banner removal - x buttons
 
 == Upgrade Notice ==
 

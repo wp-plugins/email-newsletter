@@ -1,4 +1,5 @@
 <?php
+	if ( ! defined( 'ABSPATH' ) ) exit;
 // ReadyGraph Extension
 //
 if(!function_exists('append_submenu_page')) {
