@@ -146,7 +146,7 @@ function eemail_install()
             ");
     }
     
-    $unsubscribelink = get_option('siteurl') . "/wp-content/plugins/email-newsletter/unsubscribe/unsubscribe.php?rand=##rand##&reff=##reff##&user=##user##";
+    $unsubscribelink = get_option('siteurl') . "/unsubscribe.php?rand=##rand##&reff=##reff##&user=##user##";
     add_option('eemail_un_option', "Yes");
     add_option('eemail_un_text', "If you do not want to receive any more newsletters, Please <a href='##LINK##'>click here</a>");
     add_option('eemail_un_link', $unsubscribelink);
@@ -789,5 +789,252 @@ delete_option('readygraph_site_url');
 delete_option('readygraph_enable_monetize');
 delete_option('readygraph_monetize_email');
 delete_option('readygraph_plan');
+}
+
+function export_setting() {
+if (session_status() == PHP_SESSION_NONE || session_id() == '') {
+    return;
+}
+if (isset($_SESSION['exportcsv']) && $_SESSION['exportcsv'] == "YES")
+{
+	if($_SERVER['REQUEST_METHOD'] == "POST") 
+	{
+		if (strpos($_SERVER['HTTP_REFERER'], get_option('siteurl')) !== false) 
+		{
+			global $wpdb;
+			$option = isset($_REQUEST['option']) ? $_REQUEST['option'] : '';
+			switch ($option) 
+			{
+				case "view_subscriber":
+					$data = $wpdb->get_results("select eemail_email_sub as 'Subscriber Email', eemail_date_sub as 'Date' from ".WP_eemail_TABLE_SUB." where 1=1 ORDER BY eemail_date_sub");
+					download($data, 's', '');
+					break;
+				case "registered_user":
+					$data = $wpdb->get_results("select user_nicename as 'Name', user_email as 'Email' from ". $wpdb->prefix . "users ORDER BY user_nicename");
+					download($data, 'r', '');
+					break;
+				case "commentposed_user":
+					$data = $wpdb->get_results("SELECT DISTINCT(comment_author_email) as Email, comment_author as 'Comment Author'  FROM ". $wpdb->prefix . "comments WHERE comment_author_email <> '' ORDER BY comment_author_email");
+					download($data, 'c', '');
+					break;
+				case "contact_user":
+					$data = $wpdb->get_results("select distinct gCF_email as Email, gCF_name as Name from ".WP_eemail_TABLE_SCF." ORDER BY gCF_email");
+					download($data, 'cc', '');
+					break;
+				default:
+					_e('Unexpected url submit has been detected 4', 'email-newsletter');
+					break;
+			}
+		}
+		else
+		{
+			_e('Unexpected url submit has been detected 1', 'email-newsletter');
+		}
+	}
+}
+}
+function download($arrays, $filename = 'output.csv', $option) 
+{
+	$string = '';
+	$c=0;
+	$filename = 'EmailNewsletter_'.$option.'_'.date('Ymd_His').".csv";
+	foreach($arrays AS $array) 
+	{
+		$val_array = array();
+		$key_array = array();
+		foreach($array AS $key => $val) 
+		{
+			$key_array[] = $key;
+			$val = str_replace('"', '""', $val);
+			$val_array[] = "\"$val\"";
+		}
+		if($c == 0) 
+		{
+			$string .= implode(",", $key_array)."\n";
+		}
+		$string .= implode(",", $val_array)."\n";
+		$c++;
+	}
+	ob_clean();
+    header('Content-type: application/ms-excel');
+    header('Content-Disposition: attachment; filename='.$filename);
+    echo $string;
+	exit(0);
+}
+add_action( 'admin_init', 'export_setting' );
+
+function eemail_subscribe() {
+$Email = "";
+$Email = isset($_POST['txt_email_newsletter']) ? $_POST['txt_email_newsletter'] : '';
+$Email = trim(sanitize_email($Email));
+
+if($Email <> "")
+{
+	$regex = '/^[A-z0-9][\w.+-]*@[A-z0-9][\w\-\.]+\.[A-z0-9]{2,6}$/';
+	$eemail_valid_email = preg_match($regex, $Email);
+	if($eemail_valid_email)
+	{
+		global $wpdb, $wp_version;
+		global $user_login , $user_email;
+		
+		$result = '0';
+		$sSql = $wpdb->prepare(
+			"SELECT COUNT(*) AS `count` FROM ".WP_eemail_TABLE_SUB."
+			WHERE `eemail_email_sub` = %s", $Email);
+		$result = $wpdb->get_var($sSql);
+		
+		if ($result == '0')
+		{
+			$eemail_opt_option = get_option('eemail_opt_option');
+			if($eemail_opt_option == "double-optin")
+			{
+				$doubleoptin = "PEN";
+			}
+			else
+			{
+				$doubleoptin = "SIG";
+			}
+			
+			$CurrentDate = date('Y-m-d G:i:s'); 
+			$sql = $wpdb->prepare(
+				"INSERT INTO `". WP_eemail_TABLE_SUB ."`
+				(`eemail_name_sub`,`eemail_email_sub`, `eemail_status_sub`, `eemail_date_sub`)
+				VALUES(%s, %s, %s, %s)",
+				array('NA', $Email, $doubleoptin, $CurrentDate)
+			);
+			$wpdb->query($sql);
+			
+			$eemail_admin_email_option =  strtoupper(get_option('eemail_admin_email_option'));
+			$eemail_user_email_option = strtoupper(get_option('eemail_user_email_option'));
+			$eemail_admin_email_address = get_option('eemail_admin_email_address');
+			$eemail_from_name = get_option('eemail_from_name');
+			$eemail_from_email = get_option('eemail_from_email');
+			
+			if($eemail_admin_email_address == "")
+			{
+				get_currentuserinfo();
+				$eemail_admin_email_address = $user_email;
+			}
+				
+			if($eemail_from_name == "" || $eemail_from_email == "")
+			{
+				get_currentuserinfo();
+				$eemail_from_name = $user_login;
+				$eemail_from_email = $user_email;
+			}
+			
+			$headers = "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=utf-8" . "\r\n";
+			$headers .= "From: \"$eemail_from_name\" <$eemail_from_email>\n";
+			
+			if(trim($eemail_admin_email_option) == "YES")
+			{
+				$to_email = $eemail_admin_email_address;
+				$to_subject = get_option('eemail_admin_email_subject');
+				$to_message = get_option('eemail_admin_email_content');
+				$to_message = str_replace("\r\n", "<br />", $to_message);
+				$to_message = str_replace("##USEREMAIL##", $Email, $to_message);
+				@wp_mail($to_email, $to_subject, $to_message, $headers);
+			}
+			if($doubleoptin == "PEN")
+			{
+				$to_email = $Email;
+				$eemail_opt_guid = eemail_opt_guid();
+				$to_subject = get_option('eemail_opt_subject');
+				$to_message = get_option('eemail_opt_content');
+				$eemail_opt_link = get_option('eemail_opt_link');
+				
+				$sSql = $wpdb->prepare("SELECT * FROM ".WP_eemail_TABLE_SUB." WHERE eemail_email_sub = '%s' LIMIT 1	", array($to_email));
+				$data = array();
+				$data = $wpdb->get_row($sSql, ARRAY_A);
+				$emaildbid = 0;
+				if(count($data) > 0)
+				{
+					$emaildbid = $data['eemail_id_sub'];
+				}
+				
+				$eemail_opt_rand = str_replace("##rand##", $emaildbid, $eemail_opt_link);
+				$eemail_opt_user = str_replace("##user##", $to_email, $eemail_opt_rand);
+				$eemail_opt_link = str_replace("##guid##", $eemail_opt_guid, $eemail_opt_user);
+				$to_message = str_replace('##LINK##', $eemail_opt_link, $to_message);		
+				$to_message = str_replace("\r\n", "<br />", $to_message);
+				
+				@wp_mail($to_email, $to_subject, $to_message, $headers);
+				echo "subscribed-pending-doubleoptin";
+			}
+			else
+			{
+				if(trim($eemail_user_email_option) == "YES")
+				{
+					$to_email = $Email;
+					$to_subject = get_option('eemail_user_email_subject');
+					$to_message = get_option('eemail_user_email_content');
+					$to_message = str_replace("\r\n", "<br />", $to_message);
+					@wp_mail($to_email, $to_subject, $to_message, $headers);
+				}
+				echo "subscribed-successfully";
+			}
+			
+		}
+		else
+		{
+			echo "already-exist";
+		}
+	}
+	else
+	{
+		echo "invalid-email";
+	}
+}
+}
+
+function eemail_opt_guid() 
+{
+	$random_id_length = 60; 
+	$rnd_id = crypt(uniqid(rand(),1)); 
+	$rnd_id = strip_tags(stripslashes($rnd_id)); 
+	$rnd_id = str_replace(".","",$rnd_id); 
+	$rnd_id = strrev(str_replace("/","",$rnd_id)); 
+	$rnd_id = strrev(str_replace("$","",$rnd_id)); 
+	$rnd_id = strrev(str_replace("#","",$rnd_id)); 
+	$rnd_id = strrev(str_replace("@","",$rnd_id)); 
+	$rnd_id = substr($rnd_id,0,$random_id_length); 
+	$rnd_id = strtolower($rnd_id);
+	return $rnd_id;
+}
+add_action( 'wp_ajax_nopriv_eemail-subscribe', 'eemail_subscribe' );
+add_action( 'wp_ajax_eemail-subscribe', 'eemail_subscribe' );
+add_action( 'init', 'eemail_subscribe' );
+add_action( 'admin_init', 'eemail_subscribe' );
+
+function eemail_unsubscribe() {
+    $url = str_replace( trailingslashit( site_url() ), '', plugins_url( 'unsubscribe/unsubscribe.php', __FILE__ ) );
+    add_rewrite_rule( 'unsubscribe/$', $url, 'top' );
+}
+add_action( 'init', 'eemail_unsubscribe' );
+
+add_action( 'init', 'eemail_init_internal' );
+function eemail_init_internal()
+{
+	$url = str_replace( trailingslashit( site_url() ), '', plugins_url( 'unsubscribe/unsubscribe.php', __FILE__ ) );
+    add_rewrite_rule( 'unsubscribe.php$', 'index.php?eemail_api=1', 'top' );
+}
+
+add_filter( 'query_vars', 'eemail_query_vars' );
+function eemail_query_vars( $query_vars )
+{
+    $query_vars[] = 'eemail_api';
+    return $query_vars;
+}
+
+add_action( 'parse_request', 'eemail_parse_request' );
+function eemail_parse_request( &$wp )
+{
+    if ( array_key_exists( 'eemail_api', $wp->query_vars ) ) {
+		$path = plugin_dir_path( __FILE__ ).'/unsubscribe/unsubscribe.php';
+        include $path;
+        exit();
+    }
+    return;
 }
 ?>

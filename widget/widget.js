@@ -42,8 +42,8 @@ function eemail_submit_ajax(url,app_id)
 	document.getElementById("eemail_msg").innerHTML="loading...";
 	var date_now = "";
     var mynumber = Math.random();
-	var str= "txt_email_newsletter="+ encodeURI(txt_email_newsletter.value) + "&timestamp=" + encodeURI(date_now) + "&action=" + encodeURI(mynumber);
-	eemail_submitpostrequest(url+'/eemail_subscribe.php', str);
+	var str= "txt_email_newsletter="+ encodeURI(txt_email_newsletter.value) + "&timestamp=" + encodeURI(date_now) + "&action=eemail-subscribe";
+	eemail_submitpostrequest(url, str);
 }
 
 var http_req = false;
