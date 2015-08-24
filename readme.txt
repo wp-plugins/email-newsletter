@@ -854,6 +854,8 @@ Bug Fix for readygraph
 Make monetization absolutely optional and opt-in
 Turn on monetization only after they register for ReadyGraph
 
-= 20.13.7 =
+= 20.14 =
 
 security bug fix
+disable double-opt-in and unsubscribe
+
