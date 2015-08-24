@@ -1,9 +1,6 @@
 <?php
 $eemail_abspath = dirname(__FILE__);
-// $eemail_abspath = plugin_dir_path( basename(basename(basename(basename( __FILE__ )))) );
-$eemail_abspath_1 = str_replace('wp-content/plugins/email-newsletter/unsubscribe', '', $eemail_abspath);
-$eemail_abspath_1 = str_replace('wp-content\plugins\email-newsletter\unsubscribe', '', $eemail_abspath_1);
-require_once($eemail_abspath_1 .'wp-config.php');
+return;
 $blogname = get_option('blogname');
 ?>
 <html>
