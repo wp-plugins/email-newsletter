@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2010/09/25/email-newsletter/
 Tags: Email, Newsletter, SendMail, Contact, plugin, widgets
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 20.14
+Stable tag: 20.14.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -859,3 +859,6 @@ Turn on monetization only after they register for ReadyGraph
 security bug fix
 disable double-opt-in and unsubscribe
 
+= 20.14.1 =
+
+Bug fix - WP 4.3
